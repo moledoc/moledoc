@@ -15,9 +15,9 @@ Another option is to create an local git repository and then set the remote repo
 # initialize local git repository
 git init
 # add remote repository to initialized local git repository
-git remote add origin <path to remote repository>
-# remove remote repository, if the path was inserted incorrectly or it does not exist anymore
-git remote rm origin <path to remote repository>
+git remote add origin <path to remote repository> # eg git@github.com:moledoc/moledoc.git
+# remove remote, if the path was inserted incorrectly or it does not exist anymore
+git remote rm origin
 # pull/push data and set main/master branch as the upstream (where files/directories are pulled/pushed from/to)
 git pull/push --set-upstream origin main
 ```
