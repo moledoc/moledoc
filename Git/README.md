@@ -16,10 +16,13 @@ Another option is to create an local git repository and then set the remote repo
 git init
 # add remote repository to initialized local git repository
 git remote add origin <path to remote repository>
+# remove remote repository, if the path was inserted incorrectly or it does not exist anymore
+git remote rm origin <path to remote repository>
 # pull/push data and set main/master branch as the upstream (where files/directories are pulled/pushed from/to)
 git pull/push --set-upstream origin main
-When having multiple branches, then it is recommended to use git worktree instead. That is because in that case each branch gets its own dedicated directory and switching between branches is less confusing. Easiest to set up git worktree is with clone command.
 ```
+
+When having multiple branches, then it is recommended to use git worktree instead. That is because in that case each branch gets its own dedicated directory and switching between branches is less confusing. Easiest to set up git worktree is with clone command.
 
 ```sh
 # git worktree using clone command
