@@ -139,3 +139,8 @@ git log # q to quit out of the log
 # show changes in the local repository
 git diff # q to quit out of the diff
 ```
+
+## Author
+
+Written by
+Meelis Utt
