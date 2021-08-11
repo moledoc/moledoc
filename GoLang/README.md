@@ -65,7 +65,7 @@ package main
 import (
 	"fmt"
 
-	"example.com/user/example.go"
+	example "example.com/user/example.go"
 )
 
 func main(){
@@ -134,7 +134,10 @@ where the contents is
 ```go
 package example_test
 
-import "testing"
+import (
+	"testing"
+	example "example.com/user/example"
+)
 
 func TestExample(t *testing.T){
 	if example.Example() != "This is an example" {
