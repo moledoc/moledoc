@@ -144,6 +144,7 @@ func TestExample(t *testing.T){
 		t.Fatal("<Descriptive error message>")
 	}
 }
+```
 
 ## Author
 
