@@ -1,5 +1,7 @@
 # GoLang
 
+## Setting up and general commands
+
 First we need to create a module.
 Modules are the units of distribution and versioning.
 We can create a module by running the following command
@@ -143,6 +145,98 @@ func TestExample(t *testing.T){
 	if example.Example() != "This is an example" {
 		t.Fatal("<Descriptive error message>")
 	}
+}
+```
+
+To run the test, navigate to the package directory and run
+
+```sh
+go test
+```
+
+When the test file contains multiple test, then we get more verbose output, when we run
+
+```sh
+go test -v
+# or
+go test -v ./...
+```
+
+When function name starts with capital letter, then that function is exported.
+Functions with lower case names are not exported.
+
+## Basic types
+
+* bool
+* string
+* int,, int8,, int16,, int32,, int64, uint, uint8, uint16, uint32, uint64, uintptr
+* byte // alias for uint8
+* rune // alias for int32; represents a unicode code point
+* float32, float64
+* complex64, complex128
+
+## Syntax
+
+Assigning value to a variable
+
+```go
+assigning := "This is a way to value a variable"
+var assigningVar = "This is another  way to value a variable, but declares a list of value and can have type as well"
+var assigningVarV2 string
+assigningVarV2 = "this assign has explicit type declared"
+var fst,snd,thrd,frth = "first",1,true,2.0
+var (
+	ToBe   bool       = false
+	MaxInt uint64     = 1<<64 - 1
+	z      complex128 = cmplx.Sqrt(-5 + 12i)
+)
+```
+
+Assigning value to variable with `var` can be done at package or function level; with `:=` only at function level.
+Variables without initial value are given the corresponding _zero_ value:
+
+* `0` for numeric
+* `false` for boolean
+* `""` (empty string) for string
+
+Type conversion
+
+```go
+var i int = 32
+iFloat := float32(i)
+var iFloatUint uint = uint(iFloat)
+```
+
+You can declare constants with keyword `const`.
+This keyword can be used at package and function level.
+They can be boolean, character, string or numeric values.
+
+
+An untyped constant takes the type needed by its context (eg by function return type).
+Example from https://tour.golang.org/basics/16
+
+```go
+package main
+
+import "fmt"
+
+const (
+	// Create a huge number by shifting a 1 bit left 100 places.
+	// In other words, the binary number that is 1 followed by 100 zeroes.
+	Big = 1 << 100
+	// Shift it right again 99 places, so we end up with 1<<1, or 2.
+	Small = Big >> 99
+)
+
+func needInt(x int) int { return x*10 + 1 }
+func needFloat(x float64) float64 {
+	return x * 0.1
+}
+
+func main() {
+	fmt.Println(needInt(Small))
+	fmt.Println(needFloat(Small))
+	fmt.Println(needFloat(Big))
 }
 ```
 
