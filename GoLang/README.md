@@ -1,6 +1,6 @@
 # GoLang
 
-## Setting up and general commands
+## Setup and general commands
 
 First we need to create a module.
 Modules are the units of distribution and versioning.
@@ -113,6 +113,12 @@ main
 
 or add `$HOME/go/bin` to the `$PATH` and then the command `main` is sufficient.
 
+To clean modcache, run
+
+```sh
+go clean -modcache
+```
+
 To use a package from the internet, we need to download it (simple in vscode) and then add the package name to `go.mod` file,
 so that the module knows, that we are using this package.
 For example
@@ -124,6 +130,8 @@ go 1.16
 
 require github.com/google/go-cmp v0.5.6
 ```
+
+## Testing
 
 To write tests, we create a file with suffix `_test` to the package directory
 
@@ -138,6 +146,7 @@ package example_test
 
 import (
 	"testing"
+
 	example "example.com/user/example"
 )
 
@@ -160,6 +169,8 @@ When the test file contains multiple test, then we get more verbose output, when
 go test -v
 # or
 go test -v ./...
+# or
+go test -v ./<package name>
 ```
 
 When function name starts with capital letter, then that function is exported.
@@ -175,7 +186,7 @@ Functions with lower case names are not exported.
 * float32, float64
 * complex64, complex128
 
-## Syntax
+## Assigning variables
 
 Assigning value to a variable
 
@@ -237,6 +248,74 @@ func main() {
 	fmt.Println(needInt(Small))
 	fmt.Println(needFloat(Small))
 	fmt.Println(needFloat(Big))
+}
+```
+
+## Loops
+
+Only `for` loop exist in GoLang.
+A `for` loop has 3 components:
+
+* (optional) init statement, that is executed before the loop
+* condition statement, that is evaluated before every loop iteration
+* (optional) post statement, that is executed after every loop iteration
+
+Variables declared in the init statement are visible only in the `for` loop scope.
+Example of a basic `for` loop
+
+```go
+for i:=0; i<10; i++ {
+	fmt.Println(i)
+}
+```
+
+We can omit the init and post statement, so a `for` loop would look like
+
+```go
+for ; i<10; {
+	i += i
+}
+```
+
+In this case, we can omit the extra semicolons (;), making the `for` loop equivalent to typical `while` loop
+
+```go
+for i<10 {
+	i += i
+}
+```
+
+Leaving out the conditional statement results in infinite loop.
+
+## if-else statement
+
+A basic `if` statement in Go looks like this
+
+```go
+var value = 1
+if value = 0 {
+	fmt.Println("value = 0")
+}
+```
+
+We can add init statement to the `if` statement.
+That init statement is executed before the conditional statement in the `if` clause.
+Furthermore, any variables declared in the init statement are in scope until the end of `if` statement.
+For example
+
+```go
+if value := 1; value = 0 {
+	fmt.Println("value = 0")
+}
+```
+
+Any variables declared in `if` statement are valid in the corresponding `else` statement as well.
+
+```go
+if value := 1; value = 0 {
+	fmt.Println("value = 0")
+} else {
+	fmt.Sprintf("value = %v\n",value)
 }
 ```
 
