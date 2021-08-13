@@ -259,11 +259,11 @@ func main() {
 Only `for` loop exist in GoLang.
 A `for` loop has 3 components:
 
-* (optional) init statement, that is executed before the loop
-* condition statement, that is evaluated before every loop iteration
-* (optional) post statement, that is executed after every loop iteration
+* (optional) init expression, that is executed before the loop
+* condition expression, that is evaluated before every loop iteration
+* (optional) post expression, that is executed after every loop iteration
 
-Variables declared in the init statement are visible only in the `for` loop scope.
+Variables declared in the init expression are visible only in the `for` loop scope.
 Example of a basic `for` loop
 
 ```go
@@ -272,7 +272,7 @@ for i:=0; i<10; i++ {
 }
 ```
 
-We can omit the init and post statement, so a `for` loop would look like
+We can omit the init and post expression, so a `for` loop would look like
 
 ```go
 for ; i<10; {
@@ -288,7 +288,20 @@ for i<10 {
 }
 ```
 
-Leaving out the conditional statement results in infinite loop.
+To exit a break loop, we can use `break` command.
+For example
+
+```go
+for i<10 {
+	if i==5 {
+		break
+	}
+	i += i
+}
+```
+
+
+Leaving out the condition expression results in infinite loop.
 
 ## if-else statement
 
@@ -301,9 +314,9 @@ if value = 0 {
 }
 ```
 
-We can add init statement to the `if` statement.
-That init statement is executed before the conditional statement in the `if` clause.
-Furthermore, any variables declared in the init statement are in scope until the end of `if` statement.
+We can add init expression to the `if` statement.
+That init expression is executed before the condition expression in the `if` clause.
+Furthermore, any variables declared in the init expression are in scope until the end of `if` statement.
 For example
 
 ```go
@@ -319,6 +332,29 @@ if value := 1; value = 0 {
 	fmt.Println("value = 0")
 } else {
 	fmt.Sprintf("value = %v\n",value)
+}
+```
+
+### switch statement
+
+A `switch` statement is a shorter/more concise version of writing a `if-else` block.
+In GoLang, the switch statement runs the first case whose value equals to the condition expression and not the cases that follows.
+Basically `break` statement is automatically provided in GoLang.
+
+In GoLang, switch cases need not be constants and the values involved need not be integers.
+
+Example of a `switch` statement.
+
+```go
+switch os := runtime.GOOS; os {
+case "darwin":
+	fmt.Println("OS X.")
+case "linux":
+	fmt.Println("Linux.")
+default:
+	// freebsd, openbsd,
+	// plan9, windows...
+	fmt.Printf("%s.\n", os)
 }
 ```
 
