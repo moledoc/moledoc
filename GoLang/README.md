@@ -166,10 +166,13 @@ go test
 When the test file contains multiple test, then we get more verbose output, when we run
 
 ```sh
+# when inside package directory
 go test -v
 # or
+# when in the root directory for all packages
 go test -v ./...
 # or
+# when in the root directory for selected package
 go test -v ./<package name>
 ```
 
