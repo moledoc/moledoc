@@ -358,6 +358,50 @@ default:
 }
 ```
 
+Also, case statement can have a function call (that function needs to return correct type for the case).
+Without condition equals to `switch true` statement.
+For example
+
+```go
+t := time.Now()
+switch {
+case t.Hour() < 12:
+	fmt.Println("Good morning!")
+case t.Hour() < 17:
+	fmt.Println("Good afternoon.")
+default:
+	fmt.Println("Good evening.")
+}
+```
+
+The `switch true` statement can be used to construct long `if-else` statements in a clean manner.
+
+
+## defer
+
+A `defer` statement defers the execution of a function until the surrounding function returns.
+
+The deferred call's arguments are evaluated immediately, but the function call is not executed until the surrounding function returns.
+
+For example 
+
+```go
+func main() {
+	defer fmt.Println("world")
+
+	fmt.Println("hello")
+}
+```
+
+returns `hello world`.
+
+Deferred function calls can be stacked.
+In that case, the deferred function calls are pushed onto a stack.
+When a function returns, its deferred calls are executed in last-in-first-out order.
+
+## Pointers
+
+
 ## Author
 
 Written by
