@@ -1,5 +1,14 @@
 # GoLang
 
+## Preface
+
+This documentation mainly consists of materials found at
+
+* https://golang.org/doc/tutorial/getting-started
+* https://tour.golang.org
+
+with my own examples in the repository.
+
 ## Setup and general commands
 
 First we need to create a module.
@@ -400,6 +409,75 @@ In that case, the deferred function calls are pushed onto a stack.
 When a function returns, its deferred calls are executed in last-in-first-out order.
 
 ## Pointers
+
+A pointer holds the memory address of a value and it can be *dereferenced* and *inderected* (in Go's language).
+In Go there are no pointer arithmetic, unlike in C.
+A pointers zero value is `nil`.
+
+The `*` operator denotes the pointer's underlying value (dereferencing).
+The `&` operator generates a pointer to its operand (inderecting).
+
+For better understanding, look at the following example:
+
+```go
+i, j := 42, 2701
+
+p := &i         // point to i
+fmt.Println(*p) // read i through the pointer
+*p = 21         // set i through the pointer
+fmt.Println(i)  // see the new value of i
+
+p = &j         // point to j
+*p = *p / 37   // divide j through the pointer
+fmt.Println(j) // see the new value of j
+
+// output:
+// 42
+// 21
+// 73
+```
+
+## Struct
+
+A `struct` is a collection of fields.
+
+For example
+
+```go
+package main
+
+import "fmt"
+
+type Example struct {
+	X int
+	Y int
+}
+
+func main() {
+	fmt.Println(Example{1,2})
+}
+```
+
+The fields of a `struct` are accessed using a dot.
+
+```go
+example := Example{1,2}
+fmt.Println(example.X)
+```
+
+The fields of a `struct` can be accessed through a struct pointer.
+Following previous examples, when we have a struct pointer `p` of struct `Example`, then we could access field `X` with `(*p).X`.
+Since this notation is deemed cumbersome, the language permits writing `p.X`, without the explicit dereference.
+Either one could be used.
+
+```go
+example := Example{1, 2}
+p := &example
+p.X = 1e9
+fmt.Println(example)
+(*p).X = 2e9
+fmt.Println(example)
+```
 
 
 ## Author
