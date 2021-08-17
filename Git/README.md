@@ -2,7 +2,7 @@
 
 Here are some more common command line commands for git.
 
-To clone existing repository, we use the command clone.
+To clone existing repository, we use the command *clone*.
 
 ```sh
 # clone existing remote repository to local computer
@@ -25,7 +25,10 @@ git remote rm origin
 git pull/push --set-upstream origin main
 ```
 
-When having multiple branches, then it is recommended to use git worktree instead. That is because in that case each branch gets its own dedicated directory and switching between branches is less confusing. Easiest to set up git worktree is with clone command.
+When having multiple branches, then it is recommended to use git worktree instead.
+In that case each branch gets its own dedicated directory and switching between branches is less confusing.
+Only negative point is that git worktree branch doesn't show how many commits ahead/behind your local repository is compared to the remote repository.
+Easiest to set up git worktree is with clone command.
 
 ```sh
 # git worktree using clone command
@@ -83,15 +86,22 @@ git checkout -- <filename>
 To make a new branch, view branches, switch to that branch, remove/delete that branch in local and remote repository
 
 ```sh
-# IN CASE OF NON GIT WORKTREE
 # make new branch
 git branch <new branch>
 # view all existing branches
 git branch -a
 # view existing branches in local repository
 git branch -l
+# rename branch
+git branch -m <old name> <new name>
+
 # switch branches
 git checkout <branch name>
+# stash current branch changes before checkouting another branch
+git stash
+# unstash (pop) stashed changes
+git stash pop
+
 # delete local branch 
 git branch -d <branch name>
 # delete local branch with commits
@@ -100,8 +110,9 @@ git branch -D <branch name>
 git push origin --delete <remote-branch-name>
 ```
 
+When using git-worktree, we can use the following commands:
+
 ```sh
-# IN CASE OF GIT WORKTREE
 # make new branch
 git worktree add <new branch>
 # view all worktree branches
@@ -131,13 +142,41 @@ git merge <other branch>
 git push
 ```
 
-To see git log, we use the command log. To see what changes have been made in the local repository, we use the command diff.
+To see changes and history, we use the commands *log* or *diff*.
 
 ```sh
-# show commit log
+# show current branch commit log
 git log # q to quit out of the log
-# show changes in the local repository
+# show current branch changes
 git diff # q to quit out of the diff
+
+# create patch text (diff) for current branch (shows diff's for previous commits)
+git log -p
+# create patch text (diff) for specific file in the current branch
+git log -p -- <filename>
+# show changes for specific file in the current branch 
+git diff -- <filename>
+
+# show given branch commit log
+git log <branch name>
+# show given branch changes
+git diff <branch name>
+
+# create patch text (diff) for given branch (shows diff's for previous commits)
+git log -p <branch name>
+# create patch text (diff) for specific file in the given branch
+git log -p <branch name> -- <filename>
+# show changes for specific file in the given branch 
+git diff <branch name> -- <filename>
+```
+
+To see, which remote branch is being tracked by local branch, we can use the following commands:
+
+```sh
+git remote show <remote name> # remote name is usually 'origin', but one repository can have multiple remotes
+
+# to see which remotes are connected to the local repository
+git remote  show
 ```
 
 ## Author
