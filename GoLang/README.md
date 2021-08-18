@@ -479,6 +479,47 @@ fmt.Println(example)
 fmt.Println(example)
 ```
 
+### Struct literal
+
+A struct literal denotes a newly allocated struct value by listing the values of its fields.
+You can list just a subset of fields by using the `Name:` syntax. (And the order of named fields is irrelevant.)
+The special prefix `&` returns a pointer to the struct value.
+For example
+
+```go
+package main
+
+import "fmt"
+
+type Vertex struct {
+	X, Y int
+}
+
+var (
+	v1 = Vertex{1, 2}  // has type Vertex
+	v2 = Vertex{X: 1}  // Y:0 is implicit
+	v3 = Vertex{}      // X:0 and Y:0
+	p  = &Vertex{1, 2} // has type *Vertex
+)
+
+func main() {
+	fmt.Println(v1, v2, v3, p)
+}
+// output
+// {1 2} {1 0} {0 0} &{1 2}
+```
+
+## Arrays
+
+The type `[n]T` is an array of `n` values of type `T`.
+So for example, the variable `exampleVar` is an array of 10 strings. 
+
+```go
+var exampleVar [10]string
+```
+
+Go's arrays cannot be resized.
+
 
 ## Author
 
