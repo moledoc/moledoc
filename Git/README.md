@@ -2,7 +2,16 @@
 
 Here are some more common command line commands for git.
 
-To clone existing repository, we use the command *clone*.
+To get additional information about git command or flags, we use the command **help**.
+
+```sh
+# To see available git commands
+git help
+# To see detailed information about given command
+git help <command>
+```
+
+To clone existing repository, we use the command **clone**.
 
 ```sh
 # clone existing remote repository to local computer
@@ -19,16 +28,21 @@ git remote add origin <path to remote repository>
 # Example 
 # * https -- https://github.com/moledoc/moledoc.git
 # * ssh -- git@github.com:moledoc/moledoc.git
-# remove remote, if the path was inserted incorrectly or it does not exist anymore
-git remote rm origin
 # pull/push data and set main/master branch as the upstream (where files/directories are pulled/pushed from/to)
 git pull/push --set-upstream origin main
+
+# remove remote, if the path was inserted incorrectly or it does not exist anymore
+git remote rm origin
 ```
 
-When having multiple branches, then it is recommended to use git worktree instead.
+Remote name does not have to be *origin*, it could be something else, but typically it is set as *origin*.
+Furthermore, one local repository can be linked to multiple remote repositories.
+
+When having multiple branches, then it is recommended to use git **worktree** instead.
 In that case each branch gets its own dedicated directory and switching between branches is less confusing.
 Only negative point is that git worktree branch doesn't show how many commits ahead/behind your local repository is compared to the remote repository.
-Easiest to set up git worktree is with clone command.
+
+Easiest way to set up git worktree is with clone command.
 
 ```sh
 # git worktree using clone command
@@ -40,7 +54,8 @@ git worktree add feature1
 git worktree add feature2
 ```
 
-We must describe to git, which files we want to commit. For that we stage the files with the command add.
+When we want to add files to remote repository, we need to describe, which files we want to commit.
+For that we stage the files with the command **add**.
 
 ```sh
 # stage file in the directory where the terminal is currently located
@@ -53,21 +68,24 @@ git add .
 git add ..
 ```
 
-To check the status of local repository, we use the command status
+To check the status of local repository, we use the command **status**.
 
 ```sh
 # check local repository status
 git status
+# check local repository status from a specific directory
+git status -- <path/to/dir>
 ```
 
-To commit the changes in git, we use the command commit.
+To commit the changes in git, we use the command **commit**.
 
 ```sh
 # commit staged changes with a message
 git commit -m "<here goes commit message>"
 ```
 
-To pull files or changes from remote to local repository, we use the command pull. To push the changes to remote repository, we use the command push.
+To pull files or changes from remote to local repository, we use the command **pull**.
+To push the changes to remote repository, we use the command **push**.
 
 ```sh
 # pull remote repository changes to local repository
@@ -76,14 +94,22 @@ git pull
 git push
 ```
 
-Let's say we have changed something in a file, but we want to have the remote repository version of the file in our local repository. Then we can use the command checkout to get the remote repository version of the file to local repository.
+Let's say we have changed something in a file, but we want to have the remote repository version of the file in our local repository.
+Then we can use the command **checkout** to get the remote repository version of the file to local repository.
 
 ```sh
 # get remote repository version of a file to local repository
 git checkout -- <filename>
 ```
 
-To make a new branch, view branches, switch to that branch, remove/delete that branch in local and remote repository
+To bring the latest metadata from remote to local repository, we use the command **fetch**.
+
+```sh
+git fetch
+```
+
+To make a new branch, view branches, switch to that branch, remove/delete that branch in local and remote repository, we use the command **branch**.
+Before switching branch (not relevant for git-worktree), then it is recommended to **stash** the changes of the current branch, so the changes would not get committed in the wrong branch.
 
 ```sh
 # make new branch
@@ -110,7 +136,7 @@ git branch -D <branch name>
 git push origin --delete <remote-branch-name>
 ```
 
-When using git-worktree, we can use the following commands:
+When using git-worktree, we can use the following commands to work with branches:
 
 ```sh
 # make new branch
@@ -124,7 +150,10 @@ git worktree remove <branch name>
 git worktree prune # to clean up any stale administrative files
 ```
 
-To merge branches, we use the command merge. It is highly recommended to first merge master/main branch to other branch, before merging the other branch into master. That is because then we get the latest master branch files into our other branch, avoiding possible merge conflicts. Furthermore, if any merge conflict does occur, then it happens in the other branch, not in the master branch.
+To merge branches, we use the command **merge**.
+It is highly recommended to first merge master/main branch to other branch, before merging the other branch into master.
+That is because then we get the latest master branch files into our other branch, avoiding possible merge conflicts.
+Furthermore, if any merge conflict does occur, then it happens in the other branch, not in the master branch.
 
 ```sh
 # switch/navigate to the other branch
@@ -142,7 +171,7 @@ git merge <other branch>
 git push
 ```
 
-To see changes and history, we use the commands *log* or *diff*.
+To see changes and history, we use the commands **log** or **diff**.
 
 ```sh
 # show current branch commit log
@@ -170,7 +199,7 @@ git log -p <branch name> -- <filename>
 git diff <branch name> -- <filename>
 ```
 
-To see, which remote branch is being tracked by local branch, we can use the following commands:
+To see, which remote branch is being tracked by local branch, we use the command **remote**.
 
 ```sh
 git remote show <remote name> # remote name is usually 'origin', but one repository can have multiple remotes
