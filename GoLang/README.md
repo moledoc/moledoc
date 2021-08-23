@@ -521,6 +521,143 @@ var exampleVar [10]string
 Go's arrays cannot be resized.
 
 
+## Slice
+
+Slices are dynamically-sized, flexible views into the elements of an array.
+The type `[]T` is a slice with elements of type T.
+A slice is formed by specifyng two indices: lower and upper bound, where lower bound is **included** and upper bound is **excluded**.
+For example, if we have an array `a`, then we can make a slice from it as
+
+```go
+a[lower : upper]
+```
+
+Slices are like references to arrays
+A slice does not store any data, it just describes a section of an underlying array.
+Changing the elements of a slice modifies the corresponding elements of its underlying array.
+Other slices that share the same underlying array will see those changes.
+
+Slices can contain any type, including other slices.
+
+### Slice literal
+
+A slice literal is like an array literal without the length.
+So for example, an array literal would be
+
+```go
+[3]bool{true,true,false}
+```
+
+and corresponding slice literal would be
+
+```go
+[]bool{true,true,false}
+```
+
+Notice, that slice literal creates the above array and then references it.
+
+### Slice defaults
+
+When slicing, the lower and/or upper bound can be omitted.
+In that case the default values are used.
+The default value for lower bound is 0 and for upper bound is the length of the slice.
+For example, when we have the following array, then all presented slices are equivalent.
+
+```go
+var a = [10]int
+
+a[0:10]
+a[0:]
+a[:10]
+a[:]
+```
+
+### Slice length and capacity
+
+Length of the slice is the number of element the slice contains.
+Capacity is the number of elements in the underlying array, counting from the first element in the slice.
+Slice's length can be extended by re-slicing, but only when there is suffecient capacity.
+
+We can find length and capacity of slice `s` with
+
+```go
+len(s)
+cap(s)
+```
+
+### Nil slices
+
+The zero value of a slice is `nil`.
+In that case the length and capacity is 0 and the slice has no underlying array.
+
+### Dynamic slices
+
+Dynamic slices can be made by using built-in `make` function.
+The `make` function allocates a zeroed array and returns a slice that refers to that array.
+In the function `make`, the capacity of the slice can also specified.
+
+```go
+// capacity not specified
+a := make([]int, 3)
+// capacity specified
+a := make([]int, 3,17)
+```
+
+### Appending to a slice
+
+In GoLang there is a built-in `append` function.
+
+```go
+func append(s []T, vs ...T) []T
+```
+
+If the backing array is to small to fit all provided elements, then a bigger array will be allocated and returned slice will point to that array.
+
+## Range
+
+The `range` form of the `for` loop iterates over a slice or map.
+When iterating over a slice, two values are returned each iteration: index, copy of the element at that index. 
+
+Example code
+
+```go
+package main
+
+import "fmt"
+
+var pow = []int{1, 2, 4, 8, 16, 32, 64, 128}
+
+func main() {
+	for i, v := range pow {
+		fmt.Printf("2**%d = %d\n", i, v)
+	}
+}
+// output:
+// 2**0 = 1
+// 2**1 = 2
+// 2**2 = 4
+// 2**3 = 8
+// 2**4 = 16
+// 2**5 = 32
+// 2**6 = 64
+// 2**7 = 128
+```
+
+To skip index of value we can assign either one to `_`.
+If we only want the index, we can omit the value alltogether.
+
+```go
+# skipping value
+for i, _ := range pow
+# skipping index
+for _, value := range pow
+# only index
+for i := range pow
+```
+
+
+
+
 ## Author
 
 Written by
