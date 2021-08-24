@@ -656,7 +656,99 @@ for i := range pow
 ```
 
 
+## Maps
 
+Map maps keys to values.
+We can initialize a map with function `make`.
+
+```go
+m := make(map[string]int)
+```
+
+The zero value of a map is `nil`: it has no keys and no keys can be added to it.
+
+Map **literals** are analogous to struct literals, but the keys are required.
+
+```go
+type Vertex struct {
+	Lat, Long float64
+}
+
+var m = map[string]Vertex{
+	"Bell Labs": Vertex{
+		40.68433, -74.39967,
+	},
+	"Google": Vertex{
+		37.42202, -122.08408,
+	}
+}
+```
+
+If the top-level is just a type name, then we can omit it.
+
+```go
+var m = map[string]Vertex{
+	"Bell Labs": {40.68433, -74.39967},
+	"Google":    {37.42202, -122.08408},
+}
+```
+
+### Mutating maps
+
+* Insert/update element: `m[key] = elem`
+* Retrieve element: `elem = m[key]`
+* Delete an element: `delete(m,key)`
+* Test that key is present in map (with two value assignment): `elem, ok = m[key]`
+  * if `key` is in `m`, then `ok` is `true` and `elem` is the element, else `ok` is `false` and `elem` is the zero value of the corresponding type.
+  * if `elem`, `ok` are not declared yet, we can use shorthand declaration: `elem, ok := m[key]`.
+
+
+## Function values
+
+In GoLang functions are values as well (like in haskell, R etc (functional paradigm)).
+They can be used as function arguments or return values.
+
+### Function closures
+
+Go functions may be closures. A closure is a function value that references variables from outside its body. The function may access and assign to the referenced variables; in this sense the function is "bound" to the variables.
+
+For example, the `adder` function returns a closure.
+Each closure is bound to its own `sum` variable.
+
+```go
+package main
+
+import "fmt"
+
+func adder() func(int) int {
+	sum := 0
+	return func(x int) int {
+		sum += x
+		return sum
+	}
+}
+
+func main() {
+	pos, neg := adder(), adder()
+	for i := 0; i < 10; i++ {
+		fmt.Println(
+			pos(i),
+			neg(-2*i),
+		)
+	}
+}
+//output
+// 0 0
+// 1 -2
+// 3 -6
+// 6 -12
+// 10 -20
+// 15 -30
+// 21 -42
+// 28 -56
+// 36 -72
+// 45 -90
+```
 
 ## Author
 
