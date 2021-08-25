@@ -750,6 +750,55 @@ func main() {
 // 45 -90
 ```
 
+## Methods
+
+GoLang does not have classes, but we can define methods on types.
+A method is a **function** with special _receiver_ argument.
+The receiver argurment appears between keyword `func` and method name.
+
+For example 
+
+```go
+package main
+
+import (
+	"fmt"
+	"math"
+)
+
+type Vertex struct {
+	X, Y float64
+}
+
+func (v Vertex) Abs() float64 {
+	return math.Sqrt(v.X*v.X + v.Y*v.Y)
+}
+
+func main() {
+	v := Vertex{3, 4}
+	fmt.Println(v.Abs())
+}
+// output:
+// 5
+```
+
+Method can be declared with non-struct types as well.
+
+```go
+type MyFloat float64
+
+func (f MyFloat) Abs() float64 {
+	if f < 0 {
+		return float64(-f)
+	}
+	return float64(f)
+}
+```
+
+You can **only** declare a method with a receiver whose type is defined in the same package as the method.
+You cannot declare a method with a receiver whose type is defined in another package (which includes the built-in types such as `int`).
+
+
 ## Author
 
 Written by
