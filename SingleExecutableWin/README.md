@@ -10,8 +10,8 @@
   * < select show license or not > -> Next
   * Add -> < select files that are part of the single executable > -> Next
   * Add Install Program script or command -> Next
-	* **Note** to make such executable, that runs some script, then under Install Program write: cmd /c < script name >. **NB!** first create dummy package, to see what the name of the script is inside the package (iexpress might not keep the original name). For example, my script was named `CONTRO~1.BAT`.
-  * Default(recommended) -> Next
+	* **Note** to make such executable, that runs some script, then under Install Program write: cmd /c < script name >. **NB!** first create dummy package, to see what the name of the script is inside the package (iexpress might not keep the original name). For example, I have seen script name change to `CONTRO~1.BAT` and `CREATE~1.BAT`.
+  * < select show window setting; Default(recommended) is suitable > -> Next
   * < select finish message or not > -> Next
   * < select package path and name > -> tick additional wanted Options (eg Hide File Extracting Process Animation from User) -> Next
   * < select restart configuration > -> Next
