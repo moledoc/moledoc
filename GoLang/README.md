@@ -222,7 +222,7 @@ Variables without initial value are given the corresponding _zero_ value:
 * `false` for boolean
 * `""` (empty string) for string
 
-Type conversion
+**Type conversion**
 
 ```go
 var i int = 32
@@ -297,13 +297,17 @@ for i<10 {
 }
 ```
 
-To exit a break loop, we can use `break` command.
+To exit a break loop, we can use `break` command and to continue to next iteration, we can use `continue`
 For example
 
 ```go
 for i<10 {
 	if i==5 {
 		break
+	}
+	if i==4{
+		i+=2
+		continue
 	}
 	i += i
 }
@@ -797,6 +801,584 @@ func (f MyFloat) Abs() float64 {
 
 You can **only** declare a method with a receiver whose type is defined in the same package as the method.
 You cannot declare a method with a receiver whose type is defined in another package (which includes the built-in types such as `int`).
+
+You can declare methods with pointer receivers.
+That means we have literal syntax `*T` as the receiver type (`T` can't be pointer itself).
+Methods with pointer receivers can modify the value to which the receiver points.
+Since methods often need to modify their receiver, pointer receivers are more common than value receivers.
+
+We can write the `Scale` method as a function as well (`ScaleFun`).
+
+Example
+
+```go
+package main
+
+import (
+	"fmt"
+	"math"
+)
+
+type Vertex struct {
+	X, Y float64
+}
+
+func (v Vertex) Abs() float64 {
+	return math.Sqrt(v.X*v.X + v.Y*v.Y)
+}
+
+func (v *Vertex) Scale(f float64) {
+	v.X = v.X * f
+	v.Y = v.Y * f
+}
+
+func (v Vertex) ScaleNoPtr(f float64) {
+	v.X = v.X * f
+	v.Y = v.Y * f
+	fmt.Println(v.Abs())
+}
+
+func ScaleFun(v *Vertex, f float64) {
+	v.X = v.X * f
+	v.Y = v.Y * f
+}
+
+func main() {
+	v := Vertex{3, 4}
+	v.ScaleNoPtr(10)
+	fmt.Println(v.Abs())
+	v.Scale(10)
+	fmt.Println(v.Abs())
+	ScaleFun(&v, 10)
+	fmt.Println(v.Abs())
+}
+
+// output:
+// 50
+// 5
+// 50
+// 500
+```
+
+### Methods and pointer indirection
+
+Functions with pointer argument **must** take a pointer value.
+
+```go
+var v Vertex
+ScaleFunc(v, 5)  // Compile error!
+ScaleFunc(&v, 5) // OK
+```
+
+However, methods with pointer receivers take either a value or pointer as the receiver when they are called.
+
+```go
+var v Vertex
+v.Scale(5)  // OK
+p := &v
+p.Scale(10) // OK
+```
+
+Since the `Scale` method has a pointer receiver,
+then Go interprets the statement `v.Scale(5)` as `(&v).Scale(5)`.
+
+The equivalent happens in the reverse direction.
+Functions that take a value argument must take a value of that specific type:
+
+```go
+var v Vertex
+fmt.Println(AbsFunc(v))  // OK
+fmt.Println(AbsFunc(&v)) // Compile error!
+```
+
+while methods with value receivers take either a value or a pointer as the receiver when they are called:
+
+```go
+var v Vertex
+fmt.Println(v.Abs()) // OK
+p := &v
+fmt.Println(p.Abs()) // OK
+```
+
+Here `p.Abs()` is interpreted as `(*p).Abs()`.
+
+### Choosing value or a pointer receiver
+
+There are two reasons to use a pointer receiver.
+
+The first is so that the method can modify the value that its receiver points to.
+
+The second is to avoid copying the value on each method call. This can be more efficient if the receiver is a large struct, for example.
+
+In this example, both `Scale` and `Abs` are with receiver type `*Vertex`, even though the `Abs` method needn't modify its receiver.
+
+```go
+package main
+
+import (
+	"fmt"
+	"math"
+)
+
+type Vertex struct {
+	X, Y float64
+}
+
+func (v *Vertex) Scale(f float64) {
+	v.X = v.X * f
+	v.Y = v.Y * f
+}
+
+func (v *Vertex) Abs() float64 {
+	return math.Sqrt(v.X*v.X + v.Y*v.Y)
+}
+
+func main() {
+	v := &Vertex{3, 4}
+	fmt.Printf("Before scaling: %+v, Abs: %v\n", v, v.Abs())
+	v.Scale(5)
+	fmt.Printf("After scaling: %+v, Abs: %v\n", v, v.Abs())
+}
+
+// output 
+// Before scaling: &{X:3 Y:4}, Abs: 5
+// After scaling: &{X:15 Y:20}, Abs: 25
+```
+
+In general, all methods on a given type should have either value or pointer receivers, but not a mixture of both.
+
+
+## Interfaces
+
+An interface type is defined as a set of method signatures.
+A value of interface type can hold any value that implements those methods.
+
+```go
+package main
+
+import (
+	"fmt"
+	"math"
+)
+
+type Abser interface {
+	Abs() float64
+}
+
+func main() {
+	var a Abser
+	f := MyFloat(-math.Sqrt2)
+	v := Vertex{3, 4}
+
+	a = f  // a MyFloat implements Abser
+	fmt.Println(a.Abs())
+
+	a = &v // a *Vertex implements Abser
+	fmt.Println(a.Abs())
+
+	// In the following line, v is a Vertex (not *Vertex)
+	// and does NOT implement Abser.
+	//a = v
+
+}
+
+type MyFloat float64
+
+func (f MyFloat) Abs() float64 {
+	if f < 0 {
+		return float64(-f)
+	}
+	return float64(f)
+}
+
+type Vertex struct {
+	X, Y float64
+}
+
+func (v *Vertex) Abs() float64 {
+	return math.Sqrt(v.X*v.X + v.Y*v.Y)
+}
+
+// output
+// 1.4142135623730951
+// 5
+```
+
+### Interfaces are implemented implicitly
+
+A type implements an interface by implementing its methods.
+There is no explicit declaration of intent, no `implements` keyword.
+
+Implicit interfaces decouple the definition of an interface from its implementation, which could then appear in any package without prearrangement.
+
+```go
+package main
+
+import "fmt"
+
+type I interface {
+	M()
+}
+
+type T struct {
+	S string
+}
+
+// This method means type T implements the interface I,
+// but we don't need to explicitly declare that it does so.
+func (t T) M() {
+	fmt.Println(t.S)
+}
+
+func main() {
+	var i I = T{"hello"}
+	i.M()
+}
+
+// output:
+// hello
+```
+
+### Interface values
+
+Interface values can be thought as a tuple of values `(value, type)`.
+An interface value holds a value of a specific underlying concrete type.
+Calling a method on an interface value executes the method of the same name on its underlying type.
+
+```go
+package main
+
+import (
+	"fmt"
+	"math"
+)
+
+type I interface {
+	M()
+}
+
+type T struct {
+	S string
+}
+
+func (t *T) M() {
+	fmt.Println(t.S)
+}
+
+type F float64
+
+func (f F) M() {
+	fmt.Println(f)
+}
+
+func main() {
+	var i I
+
+	i = &T{"Hello"}
+	describe(i)
+	i.M()
+
+	i = F(math.Pi)
+	describe(i)
+	i.M()
+}
+
+func describe(i I) {
+	fmt.Printf("(%v, %T)\n", i, i)
+}
+
+// output:
+// (&{Hello}, *main.T)
+// Hello
+// (3.141592653589793, main.F)
+// 3.141592653589793
+```
+
+### Interface values with nil underlying values
+
+If the concrete value inside the interface itself is `nil`, the method will be called with a nil receiver.
+In some languages this would trigger a null pointer exception, but in Go it is common to write methods that gracefully handle being called with a nil receiver (as with the method `M` in this example.)
+
+```go
+package main
+
+import "fmt"
+
+type I interface {
+	M()
+}
+
+type T struct {
+	S string
+}
+
+func (t *T) M() {
+	if t == nil {
+		fmt.Println("<nil>")
+		return
+	}
+	fmt.Println(t.S)
+}
+
+func main() {
+	var i I
+
+	var t *T
+	i = t
+	describe(i)
+	i.M()
+
+	i = &T{"hello"}
+	describe(i)
+	i.M()
+}
+
+func describe(i I) {
+	fmt.Printf("(%v, %T)\n", i, i)
+}
+
+// output:
+// (<nil>, *main.T)
+// <nil>
+// (&{hello}, *main.T)
+// hello
+```
+
+**Note** that an interface value that holds a nil concrete value is itself non-nil.
+
+### Nil interface values
+
+A nil interface value holds neither value nor concrete type.
+
+Calling a method on a nil interface is a run-time error because there is no type inside the interface tuple to indicate which concrete method to call.
+
+```go
+package main
+
+import "fmt"
+
+type I interface {
+	M()
+}
+
+func main() {
+	var i I
+	describe(i)
+	i.M()
+}
+
+func describe(i I) {
+	fmt.Printf("(%v, %T)\n", i, i)
+}
+
+// output:
+// (<nil>, <nil>)
+// panic: runtime error: invalid memory address or nil pointer dereference
+// [signal SIGSEGV: segmentation violation code=0x1 addr=0x0 pc=0x47f427]
+```
+
+### Empty interface
+
+The empty interface type specifies zero methods `interface{}`.
+An empty interface may hold values of any type, since every type implements at least zero methods.
+Empty interfaces are used by code that handles values of unknown type.
+Good example is `fmt.Print` that thakes any number of arguements of type `interface{}`.
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+	var i interface{}
+	describe(i)
+
+	i = 42
+	describe(i)
+
+	i = "hello"
+	describe(i)
+}
+
+func describe(i interface{}) {
+	fmt.Printf("(%v, %T)\n", i, i)
+}
+
+// output
+// (<nil>, <nil>)
+// (42, int)
+// (hello, string)
+```
+
+### Type assertion
+
+Type assertion provides access to an interface value's underlying concrete value
+
+```go
+t := i.(T)
+```
+
+This statement asserts that the interface value `i` holds the concrete type `T` and assigns the underlying `T` value to the variable `t`.
+If `i` does not hold a `T`, then the statement will trigger a panic.
+
+Type assertion can return two values (underlying value and a boolean value), so we can **test** whether an interface holds a specific type.
+
+```go
+t, ok := i.(T)
+```
+
+If `i` holds a `T`, then `t` will be the underlying value and `ok` will be `true`.
+If not, then `t` will be the type `T` zero value and `ok` will be `false`.
+This will not trigger a panic.
+This syntax is similar to reading from a map.
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+	var i interface{} = "hello"
+
+	s := i.(string)
+	fmt.Println(s)
+
+	s, ok := i.(string)
+	fmt.Println(s, ok)
+
+	f, ok := i.(float64)
+	fmt.Println(f, ok)
+
+	f = i.(float64) // panic
+	fmt.Println(f)
+}
+
+// output:
+// hello
+// hello true
+// 0 false
+// panic: interface conversion: interface {} is string, not float64
+```
+
+### Type switches 
+
+A type switch is a construct that permits several type assertions in series.
+It is like a regular `switch` statement, but instead of values we specify types against the given interface value's type.
+
+```go
+switch v := i.(type) {
+case T:
+    // here v has type T
+case S:
+    // here v has type S
+default:
+    // no match; here v has the same type as i
+}
+```
+
+The declaration in a `type switch` has the same syntax as type assertion, but the specific type is replace with keyword `type`, so `i.(type)`.
+
+```go
+package main
+
+import "fmt"
+
+func do(i interface{}) {
+	switch v := i.(type) {
+	case int:
+		fmt.Printf("Twice %v is %v\n", v, v*2)
+	case string:
+		fmt.Printf("%q is %v bytes long\n", v, len(v))
+	default:
+		fmt.Printf("I don't know about type %T!\n", v)
+	}
+}
+
+func main() {
+	do(21)
+	do("hello")
+	do(true)
+}
+
+// output
+// Twice 21 is 42
+// "hello" is 5 bytes long
+// I don't know about type bool!
+```
+
+### Stringers
+
+One of the most ubiquitous interfaces is `Stringer` defined by the `fmt` package.
+
+```go
+type Stringer interface {
+	String() string
+}
+```
+
+A `Stringer` is a type that can describe itself as a string.
+The `fmt` package (and others) look for this interface to print values.
+
+```go
+package main
+
+import "fmt"
+
+type Person struct {
+	Name string
+	Age  int
+}
+
+func (p Person) String() string {
+	return fmt.Sprintf("%v (%v years)", p.Name, p.Age)
+}
+
+func main() {
+	a := Person{"Arthur Dent", 42}
+	z := Person{"Zaphod Beeblebrox", 9001}
+	fmt.Println(a, z)
+}
+
+// output
+// Arthur Dent (42 years) Zaphod Beeblebrox (9001 years)
+```
+
+Another example
+
+```go
+package main
+
+import "fmt"
+
+type IPAddr [4]byte
+
+func (addr IPAddr) String() string {
+	return fmt.Sprintf("%v.%v.%v.%v",addr[0],addr[1],addr[2],addr[3])
+}
+
+func main() {
+	hosts := map[string]IPAddr{
+		"loopback":  {127, 0, 0, 1},
+		"googleDNS": {8, 8, 8, 8},
+	}
+	for name, ip := range hosts {
+		fmt.Printf("%v: %v\n", name, ip)
+	}
+}
+
+// output w/o Stringer func
+// loopback: [127 0 0 1]
+// googleDNS: [8 8 8 8]
+
+// output w/ Stringer func
+// loopback: 127.0.0.1
+// googleDNS: 8.8.8.8
+```
+
+## Errors
+
+
+
 
 
 ## Author
