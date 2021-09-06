@@ -1377,7 +1377,67 @@ func main() {
 
 ## Errors
 
+In GoLang errors are expressed with `error` values.
+The `error` type is a built-in interface similar to `fmt.Stringer`.
 
+```go
+type error interface {
+	Error() string
+}
+```
+
+When printing values, `fmt` package will (besides `fmt.Stringer`) look for `error` interface.
+In GoLang the calling code should handle errors by testing wheter the error equals `nil`, where a nil `error` denotes success and non-nil `error` denotes failure.
+
+A simple example
+
+```go
+i, err := strconv.Atoi("42")
+if err != nil {
+    fmt.Printf("couldn't convert number: %v\n", err)
+    return
+}
+fmt.Println("Converted integer:", i)
+```
+
+More comprehensive example of `error` interface 
+
+```go
+package main
+
+import (
+	"fmt"
+	"time"
+)
+
+type MyError struct {
+	When time.Time
+	What string
+}
+
+func (e *MyError) Error() string {
+	return fmt.Sprintf("at %v, %s",
+		e.When, e.What)
+}
+
+func run() error {
+	return &MyError{
+		time.Now(),
+		"it didn't work",
+	}
+}
+
+func main() {
+	if err := run(); err != nil {
+		fmt.Println(err)
+	}
+}
+
+// output
+// at <timestamp>, it didn't work
+```
+
+## Readers
 
 
 
