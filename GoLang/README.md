@@ -1506,8 +1506,6 @@ The `color.Color` and `color.Model` types are also interfaces,
 but we'll ignore that by using the predefined implementations `color.RGBA` and `color.RGBAModel`.
 These interfaces and types are specified by the `image/color` package.
 
-Example
-
 ```go
 package main
 
