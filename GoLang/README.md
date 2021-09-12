@@ -1525,6 +1525,396 @@ func main() {
 // 0 0 0 0
 ```
 
+## Goroutines
+
+A **goroutine** is a lightweight thread managed by the Go runtime.
+
+To start a goroutine with function `f(x,y,z)` we write
+
+```go
+go f(x,y,z)
+```
+
+The evaluation of `f`, `x`, `y` and `z` happens in the current goroutine, but the executon of `f` happens in the new goroutine.
+
+Since goroutines run in the same address space, then the access to shared memeory must be syncronized.
+The `sync` package provides useful primitives, but the are not as often needed, because Go has more other primitives.
+
+Example of a simple program with goroutine
+
+```go
+package main
+
+import (
+	"fmt"
+	"time"
+)
+
+func say(s string) {
+	for i := 0; i < 5; i++ {
+		time.Sleep(100 * time.Millisecond)
+		fmt.Printf("%v: %v\n",i,s)
+	}
+}
+
+func main() {
+	go say("world")
+	say("hello")
+}
+
+// output
+// 0: world
+// 0: hello
+// 1: world
+// 1: hello
+// 2: hello
+// 2: world
+// 3: world
+// 3: hello
+// 4: hello
+```
+
+### Channels
+
+Channels are a typed conduit through which you can send and receive values with the channel operator `<-`
+
+```go
+ch <- v // Send v to channel ch
+v:= <-ch // Receive from ch and assign value to v.
+```
+
+Analog to maps and slices, channels must be created before use 
+
+```go
+ch := make(chan int)
+```
+
+By default, sends and receives block until other side is ready.
+This allows goroutines to synchronize without explicit locks or condition variables.
+
+The example code sums the numbers in a slice, distributing the work between two goroutines. Once both goroutines have completed their computation, it calculates the final result.
+
+```go
+package main
+
+import "fmt"
+
+func sum(s []int, c chan int) {
+	sum := 0
+	for _, v := range s {
+		sum += v
+	}
+	c <- sum // send sum to c
+}
+
+func main() {
+	s := []int{7, 2, 8, -9, 4, 0}
+
+	c := make(chan int)
+	go sum(s[:len(s)/2], c)
+	go sum(s[len(s)/2:], c)
+	x, y := <-c, <-c // receive from c
+
+	fmt.Println(x, y, x+y)
+}
+
+// output
+// -5 17 12
+```
+
+### Buffered Channels
+
+In GoLang the channels can be _buffered_.
+To buffer a channel, we can give buffer length as the second argument to `make` to initialize a buffered channel.
+
+```go
+ch := make(chan int, 100)
+```
+
+Sends to buffered channel block only then the buffer is full.
+Receives block when the buffer is empty.
+
+```go
+package main
+
+import "fmt"
+
+func sum(s []int, c chan int,i int) {
+	sum := 0
+	for _, v := range s {
+		sum += v
+	}
+	c <- sum // send sum to c
+	fmt.Printf("Routine %v sent to channel\n",i)
+}
+
+func main() {
+	s := []int{7, 2, 8, -9, 4, 0,5,-1,15}
+	
+	c := make(chan int,2)
+	go sum(s[2*len(s)/3:], c,1)
+	go sum(s[len(s)/3:2*len(s)/3], c,2)
+	go sum(s[:len(s)/3], c,3)
+	
+	fmt.Println(<-c)
+	fmt.Println(<-c)
+	fmt.Println(<-c)
+}
+
+// possible outcome
+// Routine 3 sent to channel
+// 17
+// Routine 1 sent to channel
+// 19
+// Routine 2 sent to channel
+// -5
+```
+
+### Range and Close
+
+A sender can `close` a channel to indicate that no more values will be sent.
+Receivers can test whether a channel has been closed by assigning second parameter to the receive expression, similar to key in map check.
+
+```go
+v, ok := <-ch
+```
+
+The parameter `ok` is `false` if there are no more values to receive and the channel is closed.
+
+The loop `for i := range c` receives values from the channel repeatedly until it is closed.
+
+**NOTE**: only the sender should close a channel, never the receiver.
+Sending on a closed channel will casue a panic.
+**NOTE**: Channels differ from file, because channels usually are closed for you. Closing is only necessary when the receiver must be told that there are no more values coming, eg to terminate `range` loop.
+
+```go
+package main
+
+import (
+	"fmt"
+	"time"
+)
+
+func fibonacci(n int, c chan int) {
+	x, y := 0, 1
+	for i := 0; i < n; i++ {
+		c <- x
+		x, y = y, x+y
+		time.Sleep(200 * time.Millisecond)
+	}
+	close(c)
+}
+
+func main() {
+	c := make(chan int, 10)
+	go fibonacci(cap(c), c)
+	for i := range c {
+		fmt.Println(i)
+	}
+}
+
+// output
+// 0
+// 1
+// 1
+// 2
+// 3
+// 5
+// 8
+// 13
+// 21
+// 34
+```
+
+### Select
+
+The `select` statement lets goroutine wait on multiple commumication operation.
+A `select` blocks until on of its cases can run and then executes that case.
+If multiple are ready at the same time, random case is selected.
+
+```go
+package main
+
+import "fmt"
+
+func fibonacci(c, quit chan int) {
+	x, y := 0, 1
+	for {
+		select {
+		case c <- x:
+			x, y = y, x+y
+		case <-quit:
+			fmt.Println("quit")
+			return
+		}
+	}
+}
+
+func main() {
+	c := make(chan int)
+	quit := make(chan int)
+	go func() {
+		for i := 0; i < 10; i++ {
+			fmt.Println(<-c)
+		}
+		quit <- 0
+	}()
+	fibonacci(c, quit)
+}
+```
+
+We can use `default` case in a `select` statement.
+The `default` case is run if no other case is ready.
+It can be used to try a send or receive without blocking.
+
+```go
+select {
+    case i := <-c
+        // use i
+    default:
+        //receiveing from c would block
+}
+```
+
+An example code
+
+```go
+package main
+
+import (
+	"fmt"
+	"time"
+)
+
+func main() {
+	tick := time.Tick(100 * time.Millisecond)
+	boom := time.After(500 * time.Millisecond)
+	for {
+		select {
+		case <-tick:
+			fmt.Println("tick.")
+		case <-boom:
+			fmt.Println("BOOM!")
+			return
+		default:
+			fmt.Println("    .")
+			time.Sleep(50 * time.Millisecond)
+		}
+	}
+}
+
+// output
+//     .
+//     .
+// tick.
+//     .
+//     .
+// tick.
+//     .
+//     .
+// tick.
+//     .
+//     .
+// tick.
+//     .
+//     .
+// tick.
+// BOOM!
+```
+
+Example exercise
+
+```go
+package main
+
+import (
+	"fmt"
+
+	"golang.org/x/tour/tree"
+)
+
+type Tree struct {
+	Left  *Tree
+	Value int
+	Right *Tree
+}
+
+// Walk walks the tree t sending all values
+// from the tree to the channel ch.
+
+// Reason why function Walk is not recursive, is because then we can use the `close` function to close the channel
+func Walk(t *tree.Tree, ch chan int) {
+	walkRecursive(t, ch)
+	close(ch)
+}
+
+func walkRecursive(t *tree.Tree, ch chan int) {
+	if t == nil {
+		return
+	}
+	walkRecursive((*t).Left, ch)
+	ch <- t.Value
+	walkRecursive((*t).Right, ch)
+}
+
+// Same determines whether the trees
+// t1 and t2 contain the same values.
+func Same(t1, t2 *tree.Tree) bool {
+	t1Chan := make(chan int, 10)
+	t2Chan := make(chan int, 10)
+	go Walk(t1, t1Chan)
+	go Walk(t2, t2Chan)
+	for {
+		t1Elem, ok1 := <-t1Chan
+		t2Elem, ok2 := <-t2Chan
+		// if elements differ, trees are not the same
+		// if one tree ends before other, trees are not the same
+		if t1Elem != t2Elem || ok1 != ok2 {
+			return false
+		}
+		// if channels are closed, then break the loop
+		// we can check only one channel, because we checked in prev if they are equal (ok1==ok2).
+		if !ok1 {
+			break
+		}
+	}
+	return true
+}
+
+func main() {
+	ch := make(chan int, 10)
+	treeWalk := tree.New(1)
+	fmt.Println("Test Walk function:")
+	fmt.Println(treeWalk)
+	go Walk(treeWalk, ch)
+
+	for i := 0; i < 10; i++ {
+		fmt.Println(<-ch)
+	}
+
+	fmt.Println("Test if trees are same:")
+	fmt.Printf("\tIs the tree1 and tree1 same: %v\n", Same(tree.New(1), tree.New(1)))
+	fmt.Printf("\tIs the tree1 and tree2 same: %v\n", Same(tree.New(1), tree.New(2)))
+}
+
+// output
+// Test Walk function:
+// ((((1 (2)) 3 (4)) 5 ((6) 7 ((8) 9))) 10)
+// 1
+// 2
+// 3
+// 4
+// 5
+// 6
+// 7
+// 8
+// 9
+// 10
+// Test if trees are same:
+// 	Is the tree1 and tree1 same: true
+// 	Is the tree1 and tree2 same: false
+```
+
 
 
 ## Author
