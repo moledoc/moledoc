@@ -1,9 +1,5 @@
 # GoLang
 
-#### Table of contents
-[Preface](#preface)
-
-<a name="preface"/>
 ## Preface
 
 This documentation mainly consists of materials found at
@@ -18,7 +14,6 @@ Some additional links are mentioned under subtopics, when necessary.
 
 ## Setup and general commands
 
-First we need to create a module.
 Modules are the units of distribution and versioning.
 We can create a module by running the following command
 
