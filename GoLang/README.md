@@ -1,5 +1,9 @@
 # GoLang
 
+#### Table of contents
+[Preface](#preface)
+
+<a name="preface"/>
 ## Preface
 
 This documentation mainly consists of materials found at
@@ -2063,5 +2067,5 @@ func main() {
 
 ## Author
 
-Written by
+Compiled by
 Meelis Utt
