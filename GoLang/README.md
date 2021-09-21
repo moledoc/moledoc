@@ -2059,6 +2059,21 @@ func main() {
 // Worker 1 done
 ```
 
+## Formatting
+
+In Go formatting is easy.
+It is left to `gofmt` program, that formats the go code according to set rules.
+The program `gofmt` outputs the formatted code to stdout.
+
+Some other notes about formating:
+
+* tabs over spaces, but the latter can be used if needed.
+* line length has no limit. for readability wraping and extra indent can be used.
+
+## Commentary
+
+TODO:
+
 
 ## Author
 
