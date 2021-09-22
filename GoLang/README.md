@@ -2072,7 +2072,56 @@ Some other notes about formating:
 
 ## Commentary
 
-TODO:
+* https://golang.org/doc/effective_go#introduction
+
+Go provides C-style `/* */` block comments and C++-style `//` line comments.
+_Line comments_ are the norm;
+block comments appear mostly as package comments, but are useful within an expression or to disable a block of code.
+
+We can use program `godoc` to process the Go source files and extract documentation about the contents of the package.
+Comments that appear before top-level declarations, with no intervening newlines, are extracted along with the declaration to serve as explanatory text for the item.
+Documentation produced with `godoc` is only good when the comments are good.
+
+Every package should have a package comment, a block comment preceding the package clause.
+For multi-file packages, the package comment only needs to be present in one file, and any one will do.
+The package comment should introduce the package and provide information relevant to the package as a whole.
+It will appear first on the `godoc` page and should set up the detailed documentation that follows.
+
+Example of a package comment
+
+```go
+/*
+Package regexp implements a simple library for regular expressions.
+
+The syntax of the regular expressions accepted is:
+
+    regexp:
+        concatenation { '|' concatenation }
+    concatenation:
+        { closure }
+    closure:
+        term [ '*' | '+' | '?' ]
+    term:
+        '^'
+        '$'
+        '.'
+        character
+        '[' [ '^' ] character-ranges ']'
+        '(' regexp ')'
+*/
+package regexp
+```
+
+If the package is simle, we can use line comments to make a brief package comment 
+
+```go
+// Package path implements utility routines for
+// manipulating slash-separated filename paths.
+```
+
+
+
+**TODO:** continue
 
 
 ## Author
