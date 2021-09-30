@@ -2072,7 +2072,7 @@ Some other notes about formating:
 
 ## Commentary
 
-* https://golang.org/doc/effective_go#introduction
+* https://golang.org/doc/effective_go#commentary
 
 Go provides C-style `/* */` block comments and C++-style `//` line comments.
 _Line comments_ are the norm;
@@ -2172,6 +2172,16 @@ var (
     errorCount  uint32
 )
 ```
+
+## Names
+
+* https://golang.org/doc/effective_go#names
+
+Naming is important (everywhere).
+In go there is even a semantic effect: the visibility of a name outside a package is determined by whether the first character is upper case.
+
+### Package names
+
 
 
 
