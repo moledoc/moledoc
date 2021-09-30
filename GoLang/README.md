@@ -2112,16 +2112,68 @@ The syntax of the regular expressions accepted is:
 package regexp
 ```
 
-If the package is simle, we can use line comments to make a brief package comment 
+If the package is simple, we can use line comments to make a brief package comments.
 
 ```go
 // Package path implements utility routines for
 // manipulating slash-separated filename paths.
 ```
 
+THe formatting of the comments are handled by `gofmt`, so no extra banners are needed.
+
+The comments are uninterpreted plain text, so HTML and annotations such as `_this_` should _not_ be used.
+One adjustment `godoc` does do is to display indented texxt in a fixed-width font, suitable for program snippets. Eg see [`fmt` package](https://golang.org/pkg/fmt/)
+
+Depending on the context, `godoc` might not even reformat comments, so comments should look good: use correct spelling, punctuation and sentence structure, wrap lines etc.
+
+Inside a package, any comment immediately preceding a top level declaration serves as a _doc comment_ for that declaration.
+Every exported (capitalized) name in a program should have a doc comment.
+Doc comments work best as complete sentences, which allow a wide variety of automated presentations.
+The first sentence should be a one-sentence summary that starts with the name being declared.
+
+```go
+// Compile parses a regular expression and returns, if successful,
+// a Regexp that can be used to match against text.
+func Compile(str string) (*Regexp, error) {
+```
+
+If every doc comment begins with the name of the item it describes, 
+then using go [doc](https://pkg.go.dev/cmd/go#hdr-Show_documentation_for_package_or_symbol) subcommand and run the output through `grep`.
+So for example, you have forgot the function name that parses regular expressions, you can find out the function name by running 
+
+```sh
+go doc -all regexp | grep -i parse
+```
+
+But if all the doc comments in the package start with "This function ...",
+then `grep` would be of little help finding the function name.
+
+Go's declaration syntax allows grouping of declarations.
+A single doc comment can introduce a group related constants or variables.
+Since a whole declaration is presented, such a comment can often be perfunctory.
+
+```go
+// Error codes returned by failures to parse an expression.
+var (
+    ErrInternal      = errors.New("regexp: internal error")
+    ErrUnmatchedLpar = errors.New("regexp: unmatched '('")
+    ErrUnmatchedRpar = errors.New("regexp: unmatched ')'")
+    ...
+)
+```
+
+Grouping can also indicate relationships between items, such as the fact that a set of variables is protected by a mutex
+
+```go
+var (
+    countLock   sync.Mutex
+    inputCount  uint32
+    outputCount uint32
+    errorCount  uint32
+)
+```
 
 
-**TODO:** continue
 
 
 ## Author
