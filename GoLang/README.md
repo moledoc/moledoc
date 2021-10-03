@@ -86,9 +86,9 @@ func main(){
 }
 ```
 
-We can 
+We can
 
-* run this `go` program by running the command 
+* run this `go` program by running the command
 
 ```sh
 go run main.go
@@ -398,7 +398,7 @@ A `defer` statement defers the execution of a function until the surrounding fun
 
 The deferred call's arguments are evaluated immediately, but the function call is not executed until the surrounding function returns.
 
-For example 
+For example
 
 ```go
 func main() {
@@ -518,7 +518,7 @@ func main() {
 ## Arrays
 
 The type `[n]T` is an array of `n` values of type `T`.
-So for example, the variable `exampleVar` is an array of 10 strings. 
+So for example, the variable `exampleVar` is an array of 10 strings.
 
 ```go
 var exampleVar [10]string
@@ -622,7 +622,7 @@ If the backing array is to small to fit all provided elements, then a bigger arr
 ## Range
 
 The `range` form of the `for` loop iterates over a slice or map.
-When iterating over a slice, two values are returned each iteration: index, copy of the element at that index. 
+When iterating over a slice, two values are returned each iteration: index, copy of the element at that index.
 
 Example code
 
@@ -762,7 +762,7 @@ GoLang does not have classes, but we can define methods on types.
 A method is a **function** with special _receiver_ argument.
 The receiver argurment appears between keyword `func` and method name.
 
-For example 
+For example
 
 ```go
 package main
@@ -942,7 +942,7 @@ func main() {
 	fmt.Printf("After scaling: %+v, Abs: %v\n", v, v.Abs())
 }
 
-// output 
+// output
 // Before scaling: &{X:3 Y:4}, Abs: 5
 // After scaling: &{X:15 Y:20}, Abs: 25
 ```
@@ -1262,7 +1262,7 @@ func main() {
 // panic: interface conversion: interface {} is string, not float64
 ```
 
-### Type switches 
+### Type switches
 
 A type switch is a construct that permits several type assertions in series.
 It is like a regular `switch` statement, but instead of values we specify types against the given interface value's type.
@@ -1402,7 +1402,7 @@ if err != nil {
 fmt.Println("Converted integer:", i)
 ```
 
-More comprehensive example of `error` interface 
+More comprehensive example of `error` interface
 
 ```go
 package main
@@ -1585,7 +1585,7 @@ ch <- v // Send v to channel ch
 v:= <-ch // Receive from ch and assign value to v.
 ```
 
-Analog to maps and slices, channels must be created before use 
+Analog to maps and slices, channels must be created before use
 
 ```go
 ch := make(chan int)
@@ -1652,12 +1652,12 @@ func sum(s []int, c chan int,i int) {
 
 func main() {
 	s := []int{7, 2, 8, -9, 4, 0,5,-1,15}
-	
+
 	c := make(chan int,2)
 	go sum(s[2*len(s)/3:], c,1)
 	go sum(s[len(s)/3:2*len(s)/3], c,2)
 	go sum(s[:len(s)/3], c,3)
-	
+
 	fmt.Println(<-c)
 	fmt.Println(<-c)
 	fmt.Println(<-c)
@@ -1983,7 +1983,7 @@ We can use `defer` to ensure that mutex will be unlocked as in the `Value` metho
 If we want to wait for multiple goroutines, we can use a **wait group**
 
 Using `WaitGroup` is more efficient compared to using `sleep` to check if all goroutines are finished.
-When we launch a goroutine, 
+When we launch a goroutine,
 we increment the `WaitGroup` counter with function `Add` and when a goroutine finishes, we decrement the counter with function `Done`.
 If a `WaitGroup` is explicitly passed into function, then it should done by _pointer_.
 
@@ -2137,9 +2137,9 @@ The first sentence should be a one-sentence summary that starts with the name be
 func Compile(str string) (*Regexp, error) {
 ```
 
-If every doc comment begins with the name of the item it describes, 
+If every doc comment begins with the name of the item it describes,
 then using go [doc](https://pkg.go.dev/cmd/go#hdr-Show_documentation_for_package_or_symbol) subcommand and run the output through `grep`.
-So for example, you have forgot the function name that parses regular expressions, you can find out the function name by running 
+So for example, you have forgot the function name that parses regular expressions, you can find out the function name by running
 
 ```sh
 go doc -all regexp | grep -i parse
@@ -2181,6 +2181,41 @@ Naming is important (everywhere).
 In go there is even a semantic effect: the visibility of a name outside a package is determined by whether the first character is upper case.
 
 ### Package names
+
+After inmportig a package, the name of the package becomes an accessor for the content.
+For example, after importing
+
+```go
+import "bytes"
+```
+
+the importing package can talk about `bytes.Buffer`.
+
+A good package name is short, concise and evocative.
+By convention, packages are given lower case, single-word names;
+there should be no need for underscores or mixedCaps.
+Err on the side of brevity, since everyone using the package will be typing that name.
+
+There is no need to worry about package collisions.
+The package name is only the default name for imports.
+In case of collision, the importing package can choose a different name to use locally.
+
+Another convention is that the package name is the base name of its source directory.
+The package in `src/encoding/base64` is imported as "encoding/base64", but has name `base64`.
+
+The importer of a package will use the name to refer to its coneents, so exported names in the package can use that fact to avoid repetition.
+For instance, the buffered reader type in the `bufio` package is called `Reader`, not `BufReader`, because users see it as `bufio.Reader`, which is a clear and concise name.
+Since imported entities are always addressed with their package name, then `bufio.Reader` and `io.Reader` do not conflict.
+Another example is the function to make new instances of `ring.Ring`.
+It is the definition of a _constructor_ in Go.
+Normally it would be called `NewRing`, but since `Ring` is the only type exported by the package and since the package name is `ring`, then it's just called `New`.
+So the user of the package just sees `ring.New`.
+Use the package structure to help you choose good names.
+
+Another short example is `once.Do`.
+The `once.Do(setup)` reads well and would not be improved by writing `once.DoOrWaitUntilDone(setup)`.
+Long names don't automatically make things more readable.
+A helpful doc comment can often be more valuable than an extra long name.
 
 
 
