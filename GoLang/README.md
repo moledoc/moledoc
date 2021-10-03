@@ -2217,6 +2217,39 @@ The `once.Do(setup)` reads well and would not be improved by writing `once.DoOrW
 Long names don't automatically make things more readable.
 A helpful doc comment can often be more valuable than an extra long name.
 
+### Getter
+
+* https://golang.org/doc/effective_go#getter
+
+In Go there are no automatic support for getters and setters.
+It's ok to define own getters and setters, when it's appropriate to do so.
+However, it's not idiomatic nor necessary to put `Get` into the getter's name.
+If you have a field called `owner` (lower case, unexported), the getter method should be called `Owner` (upper case, exported), not `GetOwner`.
+The use of upper-case names for export provides the hook to discriminate the field from the method.
+A setter function, if needed, will likely be called `SetOwner`.
+Both names read well in practice.
+
+```go
+owner := obj.Owner()
+if owner != user {
+    obj.SetOwner(user)
+}
+```
+
+### interface names
+
+* https://golang.org/doc/effective_go#ginterface_names
+
+By convention, one-method interfaces are named by the method name plus and -`er` suffix or similar modification to construct an agent noun: `Reader`, `Writer`, `Formatter`, `CloseNotifier` etc.
+
+There are a number of such names and it's productive to honer them and the function names they capture.
+`Read`, `Write`, `Close`, `Flush`, `String` and so on have canonical signatures and meanings.
+To avoid confusion, don't give your methods one of those names, _unless_ they have the same signature and meaning.
+Conversely, if your type implements a method with the same meaning as a method on a well-known type, give it the same name and signature: call ypourstring-converter method `String` and not `ToString`.
+
+### MixedCaps
+
+The convention in Go is to use `MixedCaps` or `mixedCaps` for multiword names.
 
 
 
