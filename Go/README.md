@@ -1,4 +1,4 @@
-# GoLang
+# Go
 
 ## Preface
 
@@ -267,7 +267,7 @@ func main() {
 
 ## Loops
 
-Only `for` loop exist in GoLang.
+Only `for` loop exist in Go.
 A `for` loop has 3 components:
 
 * (optional) init expression, that is executed before the loop
@@ -353,10 +353,10 @@ if value := 1; value = 0 {
 ### switch statement
 
 A `switch` statement is a shorter/more concise version of writing a `if-else` block.
-In GoLang, the switch statement runs the first case whose value equals to the condition expression and not the cases that follows.
-Basically `break` statement is automatically provided in GoLang.
+In Go, the switch statement runs the first case whose value equals to the condition expression and not the cases that follows.
+Basically `break` statement is automatically provided in Go.
 
-In GoLang, switch cases need not be constants and the values involved need not be integers.
+In Go, switch cases need not be constants and the values involved need not be integers.
 
 Example of a `switch` statement.
 
@@ -611,7 +611,7 @@ a := make([]int, 3,17)
 
 ### Appending to a slice
 
-In GoLang there is a built-in `append` function.
+In Go there is a built-in `append` function.
 
 ```go
 func append(s []T, vs ...T) []T
@@ -711,7 +711,7 @@ var m = map[string]Vertex{
 
 ## Function values
 
-In GoLang functions are values as well (like in haskell, R etc (functional paradigm)).
+In Go functions are values as well (like in haskell, R etc (functional paradigm)).
 They can be used as function arguments or return values.
 
 ### Function closures
@@ -758,7 +758,7 @@ func main() {
 
 ## Methods
 
-GoLang does not have classes, but we can define methods on types.
+Go does not have classes, but we can define methods on types.
 A method is a **function** with special _receiver_ argument.
 The receiver argurment appears between keyword `func` and method name.
 
@@ -1379,7 +1379,7 @@ func main() {
 
 ## Errors
 
-In GoLang errors are expressed with `error` values.
+In Go errors are expressed with `error` values.
 The `error` type is a built-in interface similar to `fmt.Stringer`.
 
 ```go
@@ -1389,7 +1389,7 @@ type error interface {
 ```
 
 When printing values, `fmt` package will (besides `fmt.Stringer`) look for `error` interface.
-In GoLang the calling code should handle errors by testing wheter the error equals `nil`, where a nil `error` denotes success and non-nil `error` denotes failure.
+In Go the calling code should handle errors by testing wheter the error equals `nil`, where a nil `error` denotes success and non-nil `error` denotes failure.
 
 A simple example
 
@@ -1626,7 +1626,7 @@ func main() {
 
 ### Buffered Channels
 
-In GoLang the channels can be _buffered_.
+In Go the channels can be _buffered_.
 To buffer a channel, we can give buffer length as the second argument to `make` to initialize a buffered channel.
 
 ```go
@@ -2236,7 +2236,7 @@ if owner != user {
 }
 ```
 
-### interface names
+### Interface names
 
 * https://golang.org/doc/effective_go#ginterface_names
 
@@ -2251,7 +2251,7 @@ Conversely, if your type implements a method with the same meaning as a method o
 
 The convention in Go is to use `MixedCaps` or `mixedCaps` for multiword names.
 
-
+## Semicolons
 
 
 ## Author
