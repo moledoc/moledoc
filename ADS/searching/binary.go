@@ -1,5 +1,10 @@
 package binary
 
+// Binary is a function to find the index of an integer in a sorted list.
+// Time complexity is
+//   * worst case O(log(n))
+//   * average case O(log(n))
+//   * best case O(1)
 func Binary(A []int, x int) int {
 	if len(A) == 0 {
 		return -1
