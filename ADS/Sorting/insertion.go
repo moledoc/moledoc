@@ -17,3 +17,16 @@ func Insertion(A []int) []int {
 	}
 	return A
 }
+
+func InsertionDesc(A []int) []int {
+	for j := len(A) - 2; j >= 0; j-- {
+		key := A[j]
+		i := j + 1
+		for i < len(A)-1 && A[i] < key {
+			A[i-1] = A[i]
+			i++
+		}
+		A[i-1] = key
+	}
+	return A
+}
