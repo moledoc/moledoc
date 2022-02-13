@@ -1,4 +1,18 @@
-package binary
+package searching
+
+// Linear is a function to find the index of an integer in a list
+// Time complexity is
+//   * worst case O(n)
+//   * average case O(n)
+//   * best case O(1)
+func Linear(A []int, x int) int {
+	for i, elem := range A {
+		if elem == x {
+			return i
+		}
+	}
+	return -1
+}
 
 // Binary is a function to find the index of an integer in a sorted list.
 // Time complexity is
