@@ -1,3 +1,5 @@
 .seekbuf
 tags
 *.swp
+*test_data*
+*times_*

@@ -44,11 +44,12 @@ func main() {
 	walks.WalkLinear(rootLoc, getTimings, dummy, -1, 0)
 	fmt.Println("Show timings data")
 	var option string
+	n := len(timings)
 	for {
 		printOptions()
 		fmt.Scanln(&option)
 		opt, err := strconv.Atoi(option)
-		if err != nil {
+		if err != nil || opt >= n || opt < -1 {
 			fmt.Println("Incorrect option")
 			continue
 		}
