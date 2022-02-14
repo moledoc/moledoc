@@ -124,13 +124,16 @@ func main() {
 	os.Remove(searchingData)
 	limit := 1 + rand.Intn(1<<20)
 	for i := 0; i <= n; i *= 10 {
-		fmt.Println(i)
 		rand.Seed(time.Now().UTC().UnixNano())
-		appendToFile(sortingData, sortingTestData(i, limit))
+		if i <= 100000 {
+			appendToFile(sortingData, sortingTestData(i, limit))
+		}
 		appendToFile(searchingData, searchingTestData(i, limit))
 		if i == 0 {
 			i++
 		}
 	}
-	fmt.Println("[INFO] Data generated")
+	fmt.Printf("[INFO] Test data generated: N=%v\n", n)
+	fmt.Printf("\t%v\n", sortingData)
+	fmt.Printf("\t%v\n", searchingData)
 }
