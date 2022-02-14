@@ -2,7 +2,6 @@ package searching_test
 
 import (
 	"bufio"
-	"fmt"
 	"github.com/moledoc/check"
 	"github.com/moledoc/moledoc/ADS/common"
 	"github.com/moledoc/moledoc/ADS/searching"
@@ -15,12 +14,13 @@ import (
 
 type templ func([]int, int) int
 
-var cases [][]int
-var casesSorted [][]int
+// var common.Cases [][]int
+var CasesSorted [][]int
 var srchFor []int
 var srchForSorted []int
 var expected []int
-var results map[string][]time.Duration = make(map[string][]time.Duration)
+
+// var common.Results map[string][]time.Duration = make(map[string][]time.Duration)
 
 // TestData is a function that reads in generated test data
 func TestData(t *testing.T) {
@@ -41,8 +41,8 @@ func TestData(t *testing.T) {
 		check.Err(err)
 		ind, err := strconv.Atoi(comps[4])
 		check.Err(err)
-		cases = append(cases, input)
-		casesSorted = append(casesSorted, inputSorted)
+		common.Cases = append(common.Cases, input)
+		CasesSorted = append(CasesSorted, inputSorted)
 		srchFor = append(srchFor, srch)
 		srchForSorted = append(srchForSorted, srchSorted)
 		expected = append(expected, ind)
@@ -51,42 +51,42 @@ func TestData(t *testing.T) {
 
 // test is a template for testing different searching algorithms.
 func test(t *testing.T, fn templ, algo string, sorted bool) {
-	for i := 0; i < len(cases); i++ {
+	for i := 0; i < len(common.Cases); i++ {
 		start := time.Now()
 		var at int
 		if sorted {
-			at = fn(casesSorted[i], srchForSorted[i])
+			at = fn(CasesSorted[i], srchForSorted[i])
 		} else {
-			at = fn(cases[i], srchFor[i])
+			at = fn(common.Cases[i], srchFor[i])
 		}
 		elapsed := time.Since(start)
 		if at != expected[i] {
 			t.Fatalf("case %v: Expected %v, got %v\n", i, expected[i], at)
 		}
-		results[algo][i] = elapsed
+		common.Results[algo][i] = elapsed
 	}
 }
 
 func TestLinear(t *testing.T) {
 	algo := "linear"
-	results[algo] = make([]time.Duration, len(cases))
+	common.Results[algo] = make([]time.Duration, len(common.Cases))
 	test(t, searching.Linear, algo, false)
 }
 
 func TestLinearSorted(t *testing.T) {
 	algo := "linearSorted"
-	results[algo] = make([]time.Duration, len(cases))
+	common.Results[algo] = make([]time.Duration, len(common.Cases))
 	test(t, searching.Linear, algo, true)
 }
 
 func TestBinary(t *testing.T) {
 	algo := "binary"
-	results[algo] = make([]time.Duration, len(cases))
+	common.Results[algo] = make([]time.Duration, len(common.Cases))
 	test(t, searching.Binary, algo, true)
 }
 
-// TestResults is a function, that prints the benchmarks of algorithm tests.
+// Testcommon.Results is a function, that prints the benchmarks of algorithm tests.
 // NB! this functions needs to be last function in the file!
 func TestResults(t *testing.T) {
-	common.BencmarkPrinter()
+	common.BenchmarkPrinter()
 }

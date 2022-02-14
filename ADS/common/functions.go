@@ -1,16 +1,16 @@
 package common
 
 import (
-	"bufio"
 	"fmt"
 	"github.com/moledoc/check"
-	"github.com/moledoc/moledoc/ADS/sorting"
 	"os"
 	"strconv"
 	"strings"
-	"testing"
 	"time"
 )
+
+var Cases [][]int
+var Results map[string][]time.Duration = make(map[string][]time.Duration)
 
 // AssertList checks if two integer list are the same.
 func AssertList(result []int, expected []int) bool {
@@ -44,11 +44,11 @@ func StrToIntlst(str string) []int {
 
 // BenchmarkPriner is a function, that prints the benchmarks of algorithm tests.
 func BenchmarkPrinter() {
-	times := make([][]time.Duration, len(results))
-	keys := make([]string, len(results))
+	times := make([][]time.Duration, len(Results))
+	keys := make([]string, len(Results))
 	var i int
-	for key := range results {
-		times[i] = results[key]
+	for key := range Results {
+		times[i] = Results[key]
 		keys[i] = key
 		i++
 	}
@@ -59,14 +59,14 @@ func BenchmarkPrinter() {
 	defer f.Close()
 
 	_, err = f.WriteString(fmt.Sprintf("%15s", "n"))
-	for i := 0; i < len(results); i++ {
+	for i := 0; i < len(Results); i++ {
 		_, err = f.WriteString(fmt.Sprintf("%15s", keys[i]))
 		check.Err(err)
 	}
 	_, err = f.WriteString("\n")
 	check.Err(err)
 	for j := 0; j < len(times[0]); j++ {
-		_, err = f.WriteString(fmt.Sprintf("%15v", len(cases[j])))
+		_, err = f.WriteString(fmt.Sprintf("%15v", len(Cases[j])))
 		for i := 0; i < len(keys); i++ {
 			_, err = f.WriteString(fmt.Sprintf("%15s", times[i][j]))
 			check.Err(err)

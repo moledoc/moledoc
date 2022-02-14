@@ -18,7 +18,7 @@ func dummy(path string) {
 }
 
 func getTimings(path string) {
-	if strings.Contains(path, "benchmark.txt") {
+	if strings.Contains(path, "benchmarks.txt") {
 		timings = append(timings, path)
 	}
 }
@@ -42,7 +42,7 @@ func main() {
 	root = strings.Replace(rootLoc, "\\", "/", -1)
 	// Walk current working directory recursively.
 	walks.WalkLinear(rootLoc, getTimings, dummy, -1, 0)
-	fmt.Println("Show timings data")
+	fmt.Println("Show benchmarks")
 	var option string
 	n := len(timings)
 	for {

@@ -3,3 +3,4 @@ tags
 *.swp
 *test_data*
 *times_*
+*benchmarks*
