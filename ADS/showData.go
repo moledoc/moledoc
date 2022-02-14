@@ -18,7 +18,7 @@ func dummy(path string) {
 }
 
 func getTimings(path string) {
-	if strings.Contains(path, "times_") {
+	if strings.Contains(path, "benchmark.txt") {
 		timings = append(timings, path)
 	}
 }
