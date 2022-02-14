@@ -2,7 +2,7 @@
 
 set -e
 
-go run generateTestData/generate.go -n=100
+go run generateTestData/generate.go -n=100000
 printf "\n----------------------------------------------------------------\n"
 go test -v ./...
 printf "\n----------------------------------------------------------------\n"

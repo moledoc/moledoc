@@ -66,7 +66,7 @@ func notIn(nrs []int, limit int) int {
 // searchingTestData is a function that generates a line of test data for searching algorithms.
 func searchingTestData(n int, limit int) string {
 	if n == 0 {
-		return ";0;-1\n"
+		return ";;0;0;-1\n"
 	}
 	exist := make(map[int]bool)
 	p := rand.Intn(100)
@@ -122,15 +122,15 @@ func main() {
 	// Basically imitating rm -f
 	os.Remove(sortingData)
 	os.Remove(searchingData)
-	for i := 0; i < n; i++ {
+	limit := 1 + rand.Intn(1<<20)
+	for i := 0; i <= n; i *= 10 {
+		fmt.Println(i)
 		rand.Seed(time.Now().UTC().UnixNano())
-		ni := 1 + rand.Intn(1000)
-		limit := 1 + rand.Intn(1<<20)
+		appendToFile(sortingData, sortingTestData(i, limit))
+		appendToFile(searchingData, searchingTestData(i, limit))
 		if i == 0 {
-			ni = 1
+			i++
 		}
-		appendToFile(sortingData, sortingTestData(ni, limit))
-		appendToFile(searchingData, searchingTestData(ni, limit))
 	}
-	fmt.Printf("[INFO] Data generated: %v rows per file\n", n)
+	fmt.Println("[INFO] Data generated")
 }
