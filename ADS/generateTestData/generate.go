@@ -122,18 +122,17 @@ func main() {
 	// Basically imitating rm -f
 	os.Remove(sortingData)
 	os.Remove(searchingData)
-	limit := 1 + rand.Intn(1<<20)
-	for i := 0; i <= n; i *= 10 {
+	limit := rand.Intn(1 << 20)
+	appendToFile(sortingData, sortingTestData(0, limit))
+	appendToFile(searchingData, searchingTestData(0, limit))
+	for i := 1; i <= n; i *= 10 {
 		rand.Seed(time.Now().UTC().UnixNano())
 		if i <= 100000 {
 			appendToFile(sortingData, sortingTestData(i, limit))
 		}
 		appendToFile(searchingData, searchingTestData(i, limit))
-		if i == 0 {
-			i++
-		}
 	}
-	fmt.Printf("[INFO] Test data generated: N=%v\n", n)
+	fmt.Println("[INFO] Test data generated")
 	fmt.Printf("\t%v\n", sortingData)
 	fmt.Printf("\t%v\n", searchingData)
 }
