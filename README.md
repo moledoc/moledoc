@@ -2,7 +2,7 @@ Hi, my name is Meelis Utt aka `moledoc`.
 
 How the handler came to be:
 
-* Meelis Utt -> Mutt -> mole (like an animal) in Estonian <img align="middle" alt="mole" width="40px" src="https://github.com/moledoc/moledoc/blob/main/images/krtek12.jpg" />
+* Meelis Utt -> M.Utt -> mutt -> mole (like an animal) in Estonian <img align="middle" alt="mole" width="40px" src="https://github.com/moledoc/moledoc/blob/main/images/krtek12.jpg" />
 * I named my linux repositories with prefix mole (eg molecurrent). Since I had this naming convention, I aliased my (current) linux build documentation as `moledoc`. It was short and punny name, so I decided to use it as my handler.
 
 Since I used `moledoc` keyword with my documentations, then initially this repository was for documentations.
