@@ -66,6 +66,9 @@ git add <path to file>
 git add .
 # stage everything in parent directory
 git add ..
+
+# add specific chunks from given files
+git add -p <file(s)>
 ```
 
 To check the status of local repository, we use the command **status**.
