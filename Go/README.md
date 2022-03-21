@@ -17,6 +17,7 @@ Some additional links are mentioned under subtopics, when necessary.
 I highly recommend reading the following as well:
 
 * https://go.dev/doc/gopath_code
+* Go Programming Blueprints by Mat Ryer
 
 ## Setup and general commands
 
