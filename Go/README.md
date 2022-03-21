@@ -19,6 +19,12 @@ I highly recommend reading the following as well:
 * https://go.dev/doc/gopath_code
 * Go Programming Blueprints by Mat Ryer
 
+## GOPATH
+
+Mainly based on https://go.dev/doc/gopath_code.
+
+**TODO:**
+
 ## Setup and general commands
 
 Modules are the units of distribution and versioning.
@@ -160,16 +166,14 @@ touch example/example_test.go
 where the contents is
 
 ```go
-package example_test
+package example
 
 import (
 	"testing"
-
-	example "example.com/user/example"
 )
 
 func TestExample(t *testing.T){
-	if example.Example() != "This is an example" {
+	if Example() != "This is an example" {
 		t.Fatal("<Descriptive error message>")
 	}
 }
@@ -179,6 +183,12 @@ To run the test, navigate to the package directory and run
 
 ```sh
 go test
+```
+
+To see how much the tests cover the application, use flag `-cover`, eg
+
+```sh
+go test -cover
 ```
 
 When the test file contains multiple test, then we get more verbose output, when we run
