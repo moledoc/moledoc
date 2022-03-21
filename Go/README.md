@@ -12,6 +12,12 @@ with some of my own examples and some found at mentioned pages.
 
 Some additional links are mentioned under subtopics, when necessary.
 
+## Additional reading
+
+I highly recommend reading the following as well:
+
+* https://go.dev/doc/gopath_code
+
 ## Setup and general commands
 
 Modules are the units of distribution and versioning.
