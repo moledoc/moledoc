@@ -18,6 +18,7 @@ I highly recommend reading the following as well:
 
 * https://go.dev/doc/gopath_code
 * Go Programming Blueprints by Mat Ryer
+* https://go.dev/blog/godoc
 
 ## GOPATH
 
