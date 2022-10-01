@@ -41,7 +41,7 @@ This readme contains interesting quotes with/and my own remarks/ideas that reson
 	* *EXPAND*: Sane defaults make life easier, more convenient, consistent and more care free. For that reason a person should set good set of defaults to oneself and stick with them.
 * For me, annoying myself makes me more productive:
 	* *EXAMPLE*: notifications to stand during work day.
-	* *EXAMPLE*: put things I need to deal with to a place, that will annoy me.
+	* *EXAMPLE*: put things I need to deal with to a place, that will annoy/bother me.
 * If it takes less than 15 min the do it now, don't postpone it.
 	* *NOTE*: could replace 15 with 10 or 5 as well.
 	* *EXPAND*: doing the things now will make you more productive and give small victories for the day.
@@ -62,6 +62,17 @@ This readme contains interesting quotes with/and my own remarks/ideas that reson
 	2. action to date (what has been done)
 	3. actions to be completed (what will be done)
 	4. issues/achievements/other
+* Set goals that push oneself, but are still manageable.
+* *FOOD FOR THOUGHT*: try answering these questions when setting goals, before starting the work towards it:
+	* What is the goal?
+	* Why do you want to achieve that goal? What is the purpose of this goal?
+	* How are you going to achieve this goal? What methods/materials etc are you going to use to achieve this goal?
+	* When are you going to work towards this goal? What time is reserved for advancing towards this goal?
+* *DERIVED*: set goals using the '4what' approach:
+	* What is the goal?
+	* What is the purpose of this goal?
+	* What methods/materials etc are you going to use to achieve this goal?
+	* What time is reserved for advancing towards this goal?
 
 ## Author
 
