@@ -13,6 +13,8 @@ This readme contains interesting quotes with/and my own remarks/ideas that reson
 * Humans are sequencial, they can't multitask. For that reason, try to focus on one thing at a time (eg until small milestone).
 	* Metaphor for sequentiality that ties into the phrase 'train of thought': each thought/action is a train and you are the passenger. Switching between trains are costly: you need to exit the current train, walk to correct platform and possibly wait for the train. Ie switching from one though/action you need to exit the current one, go into the correct mindspace and be there for some time to be able to board that thought. Doing this switch often makes you unproductive: you thoughts can't travel great distances, if it's constantly switching contexts.
 * Rule of writing: If you want to clarify your thinking, remember something important or communicate something clearly - *WRITE IT DOWN*.
+* *FOOD FOR THOUGHT*: Garbage collect your brain/transfer the responsibility of remembering: everything that can be written down. Do it when remembering tasks/events/todos/shopping lists/events etc.  This clears/de-allocates your brains resources, which allow to allocate them to more relevant task.
+	* essentially pensieve
 * First time throw away: first version is to understand the problem (ie if the code is bad, but it works, then it's fine), the next version(s) is(are) solving the problem (ie making the solution/code better).
 * Code for product or learning, otherwise find existing solution.
 * Slow is smooth, smooth is fast
@@ -44,8 +46,11 @@ This readme contains interesting quotes with/and my own remarks/ideas that reson
 	* *NOTE*: could replace 15 with 10 or 5 as well.
 	* *EXPAND*: doing the things now will make you more productive and give small victories for the day.
 	* *EXPAND*: the small tasks won't then pile up and become big undertaking, that might be even harder to do.
-* Smart devices/solutions are good for everyday live (by making things easier/more comfortable/etc), but analog is superior in edge cases.
+* Smart devices/solutions are good for everyday live (by making things easier/more comfortable/etc), but analog is superior in edge cases/irregular situations.
 	* *EXPAND*: smart device/solution failing in critical situation could be really painful; analog is usually more robust, albeit less featureful.
+* *FOOD FOR THOUGHT*: Second is an eternity. You decide what you do with that.
+* Information is currency with high value - 21 õppetundi 21.sajandiks, p23 paraphrasing
+* Information has significantly less value without a context.
 * Give a better presentation:
 	* illustrative gestures
 	* deliberate movement
