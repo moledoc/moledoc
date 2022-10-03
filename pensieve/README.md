@@ -62,17 +62,13 @@ This readme contains interesting quotes with/and my own remarks/ideas that reson
 	2. action to date (what has been done)
 	3. actions to be completed (what will be done)
 	4. issues/achievements/other
-* Set goals that push oneself, but are still manageable.
+* Set goals that push oneself, but are still manageable. Goals should be something that can be measured or have clear understanding of done.
 * *FOOD FOR THOUGHT*: try answering these questions when setting goals, before starting the work towards it:
 	* What is the goal?
+	* What is the definition of done/completed for this goal?
 	* Why do you want to achieve that goal? What is the purpose of this goal?
 	* How are you going to achieve this goal? What methods/materials etc are you going to use to achieve this goal?
 	* When are you going to work towards this goal? What time is reserved for advancing towards this goal?
-* *DERIVED*: set goals using the '4what' approach:
-	* What is the goal?
-	* What is the purpose of this goal?
-	* What methods/materials etc are you going to use to achieve this goal?
-	* What time is reserved for advancing towards this goal?
 
 ## Author
 
