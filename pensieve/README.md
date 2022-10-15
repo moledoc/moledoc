@@ -36,6 +36,7 @@ This readme contains interesting quotes with/and my own remarks/ideas that reson
 * (For me) Being prepared is one ingredient to success.
 	* Being prepared for different situations makes me more calm and confident.
 	* I've noticed that certain types of uncertainty/lack of knowledge makes me anxious/nervous.
+* Full preparation can make everything done
 * Value of good night's sleep is the productivity and performance of the next day.
 * Sane defaults make great effort.
 	* *EXPAND*: Sane defaults make life easier, more convenient, consistent and more care free. For that reason a person should set good set of defaults to oneself and stick with them.
@@ -69,6 +70,7 @@ This readme contains interesting quotes with/and my own remarks/ideas that reson
 	* Why do you want to achieve that goal? What is the purpose of this goal?
 	* How are you going to achieve this goal? What methods/materials etc are you going to use to achieve this goal?
 	* When are you going to work towards this goal? What time is reserved for advancing towards this goal?
+* Expertise boils down to fast and accurate pattern matching
 
 ## Author
 
