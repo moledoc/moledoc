@@ -1,4 +1,4 @@
-# CLI (Command line interface) Git
+# git
 
 Here are some more common command line commands for git.
 
@@ -36,7 +36,33 @@ git remote rm origin
 ```
 
 Remote name does not have to be *origin*, it could be something else, but typically it is set as *origin*.
-Furthermore, one local repository can be linked to multiple remote repositories.
+Furthermore, one local repository can be linked to multiple remote repositories by defining multiple remotes. For example
+
+```sh
+git remote add origin <path to first git repo>
+git remote add secondary <path to second git repo>
+```
+
+**NB!** This will make the two repos mirrored.
+
+To configure git behaviour, we use the command **config**.
+This can either be `--local` (in that specific repo) or `--global` (applies to all local repos).
+Useful examples:
+
+```sh
+# username used in git commits
+git config --global user.name "<username>"
+
+# email used in git commits
+git config --global user.email "<email>"
+
+# changing git commit editor, where option is a text editor (ie vim, nano, but can be graphical as well)
+git config --global core.editor "<option>"
+git config --local core.editor "vim"
+
+# setting git command aliases.
+git config --local alias.co checkout # usages: git co
+```
 
 When having multiple branches, then it is recommended to use git **worktree** instead.
 In that case each branch gets its own dedicated directory and switching between branches is less confusing.
@@ -83,8 +109,14 @@ git status -- <path/to/dir>
 To commit the changes in git, we use the command **commit**.
 
 ```sh
+# commit staged changes (this opens up a commit message buffer in set text editor, see git config core.editor)
+git commit
+
 # commit staged changes with a message
 git commit -m "<here goes commit message>"
+
+# commit all unstaged files with a message
+git commit -am "<here goes commit message>"
 ```
 
 To pull files or changes from remote to local repository, we use the command **pull**.
@@ -126,10 +158,24 @@ git branch -m <old name> <new name>
 
 # switch branches
 git checkout <branch name>
+## make a new branch and switch to it
+git checkout -b <new branch>
 # stash current branch changes before checkouting another branch
 git stash
-# unstash (pop) stashed changes
+# stash current branch changes with message/name
+git stash push -m "message"
+# list stash
+git stash list
+# show changes in stash
+git stash show
+# unstash (pop) latest stashed changes
 git stash pop
+# unstash n'th stash (by list index - indeces start from 0)
+git stash pop n
+git stash pop stash@{n}
+# unstash a stash by name
+git stash pop stash^{/my_stash_name}
+
 
 # delete local branch 
 git branch -d <branch name>
@@ -160,6 +206,7 @@ Furthermore, if any merge conflict does occur, then it happens in the other bran
 
 ```sh
 # switch/navigate to the other branch
+
 ## in case of git-worktree, just open the corresponding branch directory
 git checkout <other branch>
 # merge master into the other branch
