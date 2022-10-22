@@ -40,6 +40,7 @@ This readme contains interesting quotes with/and my own remarks/ideas that reson
 * Value of good night's sleep is the productivity and performance of the next day.
 * Sane defaults make great effort.
 	* *EXPAND*: Sane defaults make life easier, more convenient, consistent and more care free. For that reason a person should set good set of defaults to oneself and stick with them.
+	* *EXPAND*: I reduce my mental overhead by assigning place/spot for objects and being consistent with it. By doing this I always know where my things are. This shifts the effort of finding things into an effort of returning things to the designated place/spot.
 * For me, annoying myself makes me more productive:
 	* *EXAMPLE*: notifications to stand during work day.
 	* *EXAMPLE*: put things I need to deal with to a place, that will annoy/bother me.
