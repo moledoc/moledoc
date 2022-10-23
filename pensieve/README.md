@@ -11,7 +11,7 @@ This readme contains interesting quotes with/and my own remarks/ideas that reson
 		* *EXPAND*: continuously making small steps will create a habit that will in the long run make a big difference/change. This applies to both positive and negative directions.
 * Nothing in life is as important as you think it is when you are thinking about it. - Thinking, fast and slow; Daniel Kahneman, p 402
 * Humans are sequencial, they can't multitask. For that reason, try to focus on one thing at a time (eg until small milestone).
-	* Metaphor for sequentiality that ties into the phrase 'train of thought': each thought/action is a train and you are the passenger. Switching between trains are costly: you need to exit the current train, walk to correct platform and possibly wait for the train. Ie switching from one though/action you need to exit the current one, go into the correct mindspace and be there for some time to be able to board that thought. Doing this switch often makes you unproductive: you thoughts can't travel great distances, if it's constantly switching contexts.
+	* Metaphor for sequentiality that ties into the phrase 'train of thought': each thought/action is a train and you are the passenger. Switching between trains are costly: you need to exit the current train, walk to correct platform and possibly wait for the train. Ie switching from one though/action you need to exit the current one, go into the correct mindspace and be there for some time to be able to board that thought. Doing this switch often makes you unproductive: your thoughts can't travel great distances, if it's constantly switching contexts.
 * Rule of writing: If you want to clarify your thinking, remember something important or communicate something clearly - *WRITE IT DOWN*.
 * *FOOD FOR THOUGHT*: Garbage collect your brain/transfer the responsibility of remembering: everything that can be written down. Do it when remembering tasks/events/todos/shopping lists/events etc.  This clears/de-allocates your brains resources, which allow to allocate them to more relevant task.
 	* essentially pensieve
@@ -26,6 +26,7 @@ This readme contains interesting quotes with/and my own remarks/ideas that reson
 * The situation has provided a cue; this cue has given the expert access to information stored in memory, and the information provides the answer. Intuition is nothing more and nothing less than recognition. - Thinking, fast and slow; Daniel Kahneman, p237
 	* *TAKE AWAY*: Experience in everything is essentially pattern matching.
 * Whether professionals have a chance to develop intuitive expertise depends essentially on the quality and speed of feedback, as well as on sufficient opportunity to practice. - Thinking, fast and slow; Daniel Kahneman, p 241
+* Expertise boils down to fast and accurate pattern matching
 * When giving estimates, include the unknown unknowns. Use the outside view: how have similar projects done (time, success etc). - Thinking, fast and slow; Daniel Kahneman, paraphrasing
 * Bad emotions, bad parents, and bad feedback have more impact than good ones, and bad information is processed more thoroughly than good. The self is more motivated to avoid bad self-definitions than to pursue good ones. Bad impressions and bad stereotypes are quicker to form and more resistant to disconfirmation than good ones: Thinking, fast and slow; Daniel Kahneman, p 302 
 	* *ESSENCE*: bad is stronger than good
@@ -41,9 +42,9 @@ This readme contains interesting quotes with/and my own remarks/ideas that reson
 * Sane defaults make great effort.
 	* *EXPAND*: Sane defaults make life easier, more convenient, consistent and more care free. For that reason a person should set good set of defaults to oneself and stick with them.
 	* *EXPAND*: I reduce my mental overhead by assigning place/spot for objects and being consistent with it. By doing this I always know where my things are. This shifts the effort of finding things into an effort of returning things to the designated place/spot.
-* For me, annoying myself makes me more productive:
+* For me, setting notifications/reminders for myself make me more productive:
 	* *EXAMPLE*: notifications to stand during work day.
-	* *EXAMPLE*: put things I need to deal with to a place, that will annoy/bother me.
+	* *EXAMPLE*: putting things I need to deal with to a place, that will annoy/bother me.
 * If it takes less than 15 min the do it now, don't postpone it.
 	* *NOTE*: could replace 15 with 10 or 5 as well.
 	* *EXPAND*: doing the things now will make you more productive and give small victories for the day.
@@ -71,7 +72,6 @@ This readme contains interesting quotes with/and my own remarks/ideas that reson
 	* Why do you want to achieve that goal? What is the purpose of this goal?
 	* How are you going to achieve this goal? What methods/materials etc are you going to use to achieve this goal?
 	* When are you going to work towards this goal? What time is reserved for advancing towards this goal?
-* Expertise boils down to fast and accurate pattern matching
 
 ## Author
 
