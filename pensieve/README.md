@@ -65,6 +65,12 @@ This readme contains interesting quotes with/and my own remarks/ideas that reson
 	2. action to date (what has been done)
 	3. actions to be completed (what will be done)
 	4. issues/achievements/other
+* 5 point order
+	1. status quo
+	2. plan
+	3. execution
+	4. support
+	5. management
 * Set goals that push oneself, but are still manageable. Goals should be something that can be measured or have clear understanding of done.
 * *FOOD FOR THOUGHT*: try answering these questions when setting goals, before starting the work towards it:
 	* What is the goal?
@@ -72,6 +78,12 @@ This readme contains interesting quotes with/and my own remarks/ideas that reson
 	* Why do you want to achieve that goal? What is the purpose of this goal?
 	* How are you going to achieve this goal? What methods/materials etc are you going to use to achieve this goal?
 	* When are you going to work towards this goal? What time is reserved for advancing towards this goal?
+* Expertise boils down to fast and accurate pattern matching
+* Don't put yourself down, especially if you get positive feedback, regardless of your cv/age/etc: skills and qualifications aren't fully reflected from a piece of paper/apperance.
+* If someone compliments you, then it's rude not to accept it. Just accept it and say 'Thank You'. 
+	* If they compliment you, then it's their opinion. Just own the compliment.
+* It is important to know your team, so that you could lead them better.
+	* background, opinions, apperance, interests, hobbies etc
 
 ## Author
 
