@@ -84,6 +84,7 @@ This readme contains interesting quotes with/and my own remarks/ideas that reson
 	* If they compliment you, then it's their opinion. Just own the compliment.
 * It is important to know your team, so that you could lead them better.
 	* background, opinions, apperance, interests, hobbies etc
+* Passive activity: being active passively. For example biking/walking to grocery store; taking the stairs over escalator/elevator etc. This follows the idea 'small steps makes big reps'.
 
 ## Author
 
