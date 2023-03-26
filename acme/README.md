@@ -43,6 +43,7 @@ Notes
 * have goimports and gofmt support in acme:	run `acmego` from https://github.com/9fans/go/acme/acmego
 * right click to go-to line: `:n`
 * to use tab in: `Edit literally type tab (not \t)`
+* start `./bin/plumber` to have access to the pre-defined plumming rules, such as jump to file and column, open pdfs and webpages.
 
 ------------------------------------------------------------------------
 
