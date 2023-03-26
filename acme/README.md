@@ -21,6 +21,9 @@ echo "PLAN9=$HOME/plan9
 PATH=$PATH:$PLAN9/bin" >> .bashrc
 ```
 
+Another approach is to use this `https://github.com/9fans/go` to get acme.
+This repo also contains some convenience programs for Go development (eg acmego).
+
 Notes
 -----
 
