@@ -8,6 +8,19 @@ started. This readme is to document some helpful commands, cool stuff
 and some general notes/tips/help. It will follow rather freeflow
 formatting.
 
+Installation
+---------
+
+```{.sh}
+apt install build-essential # or equivalent to the package manager
+cd $HOME
+git clone https://github.com/9fans/plan9port.git plan9
+cd plan9
+./INSTALL
+echo "PLAN9=$HOME/plan9
+PATH=$PATH:$PLAN9/bin" >> .bashrc
+```
+
 Notes
 -----
 
