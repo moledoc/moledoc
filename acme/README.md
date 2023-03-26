@@ -11,21 +11,22 @@ formatting.
 Notes
 -----
 
-    line number                 Edit = 
-    cursor position                 Edit =\# 
-    replace in the whole file           Edit ,s/<from>/<to>/g 
-    replace between lines           Edit 10,11s/<from>/<to>/g 
-    comment out full line           Edit s/^(.*)$/\/\/ \1/g 
-    comment in full line                Edit s/^\/\/ (.*)$/\1/g 
-    comment out selection           Edit s/(.*)/\/\/ \1/g 
-    comment in selection            Edit s/\/\/ (.*)/\1/g 
-    indent left                     Edit s/ (.*)/\1/g 
-    indent right                    Edit s/(.*)/    \1/g 
-    incremental change              Edit .+\#0/old/c/new 
-    run current go file             go run $% 
-    re-run given command            Watch go run \$\% (Watch: https://github.com/eaburns/Watch) 
-    right click to go-to line           :n 
-    to use tab in Edit              literally type tab (not \t)
+* line number: `Edit =`
+* cursor position: `Edit =#`
+* replace in the whole file: `Edit ,s/<from>/<to>/g`
+* replace between lines: `Edit 10,11s/<from>/<to>/g`
+* comment out full line: `Edit s/^(.*)$/\/\/ \1/g`
+* comment in full line: `Edit s/^\/\/ (.*)$/\1/g`
+* comment out selection: `Edit s/(.*)/\/\/ \1/g`
+* comment in selection: `Edit s/\/\/ (.*)/\1/g`
+* indent left: `Edit s/ (.*)/\1/g`
+* indent right: `Edit s/(.*)/ \1/g`
+* incremental change: `Edit .+#0/old/c/new`
+* run current go file: `go run $%`
+* re-run given command: `Watch go run $%` (Watch:https://github.com/9fans/go/tree/main/acme/Watch or https://github.com/eaburns/Watch)
+* have goimports and gofmt support in acme:	run `acmego` from https://github.com/9fans/go/acme/acmego
+* right click to go-to line: `:n`
+* to use tab in: `Edit literally type tab (not \t)`
 
 ------------------------------------------------------------------------
 
@@ -81,6 +82,7 @@ found and then some things I tried previously.
 
 ### From Russ
 
+```{.txt}
     plan9port works well with FUSE.
     It works less well with the 9p module.
     Assuming you have write permission on /mnt/acme
@@ -89,9 +91,11 @@ found and then some things I tried previously.
     acme -m /mnt/acme
 
     should work just fine.
+```
 
 ------------------------------------------------------------------------
 
+```{.txt}
     For what it's worth, you don't need to mount fontsrv anywhere.
     You can just use 'fontsrv -p .' to list the fonts,
     and then refer to them as /mnt/font/Name/SIZEa/font.
@@ -102,9 +106,11 @@ found and then some things I tried previously.
         -F /mnt/font/SourceCodePro-Regular/12a/font
 
     In that form, acme will "open" /mnt/font/... by reading fontsrv -p's output.
+```
 
 ### Stuff that I also found/saw
 
+```{.txt}
     mount acme to /mnt
     9 mount `namespace`/acme /mnt/acme
 
@@ -117,6 +123,7 @@ found and then some things I tried previously.
     allow acme to mount with ease:
     chmod 777 /mnt/acme
     chmod 777 /mnt/font
+```
 
 Good resources
 --------------
