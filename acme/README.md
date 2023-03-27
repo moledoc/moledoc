@@ -63,26 +63,30 @@ cindex <list of go dirs to index>
 
 ``` {.sh}
 #!/bin/sh
-
-9 grep -i -n '^func (\([^)]+\) )?'$1'\(' *.go /dev/null
+search=$1
+test -n $search && search=$(cat -)
+9 grep -i -n '^func (\([^)]+\) )?'$search'\(' *.go /dev/null
 ```
 
 ``` {.sh}
 #!/bin/sh
-
-csearch -n -f '\.go$' '^func (\([^)]+\) )?'$1'\('
+search=$1
+test -n $search && search=$(cat -)
+csearch -n -f '\.go$' '^func (\([^)]+\) )?'$search'\('
 ```
 
 ``` {.sh}
 #!/bin/sh
-
-9 grep -i -n '^type '$1' ' *.go /dev/null
+search=$1
+test -n $search && search=$(cat -)
+9 grep -i -n '^type '$search' ' *.go /dev/null
 ```
 
 ``` {.sh}
 #!/bin/sh
-
-csearch -n -f '\.go$' '^type '$1
+search=$1
+test -n $search && search=$(cat -)
+csearch -n -f '\.go$' '^type '$seach
 ```
 
 MOUNTING AND FONTS
