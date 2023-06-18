@@ -85,6 +85,10 @@ This readme contains interesting quotes with/and my own remarks/ideas that reson
 * It is important to know your team, so that you could lead them better.
 	* background, opinions, apperance, interests, hobbies etc
 * Passive activity: being active passively. For example biking/walking to grocery store; taking the stairs over escalator/elevator etc. This follows the idea 'small steps makes big reps'.
+* When you can do everything, what you do is so much more important.
+* The most reusable code is the one you can just copy-paste. (tsoding)
+* It is what it is and isn't what it isn't. (tsoding)
+* *FOOD FOR THOUGHT*: being jack of all trades and master of one. (from the internet)
 
 ## Author
 
