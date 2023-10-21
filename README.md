@@ -11,7 +11,6 @@ However, since this readme is shown on my github profile, then I've added a bit 
 
 ## What are my next projects
 
-* revive [goava](https://github.com/moledoc/goava.git) and make it into a proper project
 * revive [ytf](https://github.com/moledoc/ytf.git)
 * do some cleanup in the projects I transfered from my other experimenting account
 * explore lower level networking - starting with C, but also in Go
