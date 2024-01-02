@@ -11,6 +11,8 @@ However, since this readme is shown on my github profile, then I've added a bit 
 
 ## What are my next projects
 
+* go through past advent of code problems and have fun (different languages/approaches/etc, would be fine to solve same problem multiple times)
+* clean-up/refine molecurrent repo
 * revive [ytf](https://github.com/moledoc/ytf.git)
 * do some cleanup in the projects I transfered from my other experimenting account
 * explore lower level networking - starting with C, but also in Go
