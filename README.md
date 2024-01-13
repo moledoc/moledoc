@@ -11,8 +11,9 @@ However, since this readme is shown on my github profile, then I've added a bit 
 
 ## What are my next projects
 
-* go through past advent of code problems and have fun (different languages/approaches/etc, would be fine to solve same problem multiple times)
 * clean-up/refine molecurrent repo
+* go through past advent of code problems and have fun (different languages/approaches/etc, would be fine to solve same problem multiple times) - [repo for that](https://github.com/moledoc/aoc.git)
+* explore usage of cloudflare/gokey or implement simple vaultless password manager myself
+* evolve [headers](https://github.com/moledoc/headers.git) repo, e.g. my own string header/implementation, dynamic arrays, atoi/atof/etc
 * revive [ytf](https://github.com/moledoc/ytf.git)
-* do some cleanup in the projects I transfered from my other experimenting account
-* explore lower level networking - starting with C, but also in Go
+* explore lower level networking and sockets - starting with C, but also in Go
