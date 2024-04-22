@@ -11,4 +11,6 @@ However, since this readme is shown on my github profile, then I've added a bit 
 
 ## What are my next projects
 
+* notification system written in C using raylib
 * go through past advent of code problems and have fun (different languages/approaches/etc, would be fine to solve same problem multiple times) - [repo for that](https://github.com/moledoc/aoc.git)
+* get familiar with Arduino
