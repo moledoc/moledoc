@@ -11,6 +11,12 @@ However, since this readme is shown on my github profile, then I've added a bit 
 
 ## What are my next projects
 
-* notification system written in C using raylib
-* go through past advent of code problems and have fun (different languages/approaches/etc, would be fine to solve same problem multiple times) - [repo for that](https://github.com/moledoc/aoc.git)
+* create header-only like libraries for data structure, algorithms and other concpets/ideas;
+* go through past advent of code problems ([aoc](https://github.com/moledoc/aoc.git))
 * get familiar with Arduino
+* learn GPU programming
+* Casey Muratori's computer enhance program
+
+### Maybe projects
+* restart notification system project ([beeper](https://github.com/moledoc/beeper.git))
+* simple image viewer in c+raylib
