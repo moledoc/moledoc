@@ -19,4 +19,3 @@ However, since this readme is shown on my github profile, then I've added a bit 
 
 ### Maybe projects
 * restart notification system project ([beeper](https://github.com/moledoc/beeper.git))
-* simple image viewer in c+raylib
