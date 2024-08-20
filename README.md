@@ -14,8 +14,8 @@ However, since this readme is shown on my github profile, then I've added a bit 
 * create header-only like libraries for data structure, algorithms and other concpets/ideas;
 * go through past advent of code problems ([aoc](https://github.com/moledoc/aoc.git))
 * get familiar with Arduino
-* learn GPU programming
 * Casey Muratori's computer enhance program
 
 ### Maybe projects
 * restart notification system project ([beeper](https://github.com/moledoc/beeper.git))
+* learn GPU programming
