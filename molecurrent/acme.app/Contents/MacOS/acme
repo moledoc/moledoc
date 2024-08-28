@@ -1,0 +1,11 @@
+#!/bin/bash
+SHELL=/bin/bash
+source $HOME/.bashrc
+PLAN9=${PLAN9:-/usr/local/plan9}
+if ! [[ :$PATH: =~ :$PLAN9/bin: ]]
+then
+	PATH=$PATH:$PLAN9/bin
+fi
+acme -f /mnt/font/Menlo-Regular/14a/font
+exit 0
+

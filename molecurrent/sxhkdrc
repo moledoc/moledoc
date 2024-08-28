@@ -1,0 +1,39 @@
+# sound: superuser.com/questions/1577281/xev-not-detecting-media-keys
+XF86AudioMute
+	sound.sh "toggle"
+XF86AudioRaiseVolume
+	sound.sh "2%+"
+XF86AudioLowerVolume
+	sound.sh "2%-"
+XF86AudioPlay
+	playerctl play-pause
+XF86AudioNext
+	playerctl next
+XF86AudioPrev
+	playerctl previous
+XF86AudioMicMute
+	toggle-mic.sh
+
+# duplicate for use on keyboard w/o media keys
+shift + XF86AudioMute
+	playerctl play-pause
+shift + XF86AudioRaiseVolume
+	playerctl next
+shift + XF86AudioLowerVolume
+	playerctl previous
+
+# brightness
+XF86MonBrightnessUp
+	brightness.sh + "$BRIGHTNESS_STEP"
+XF86MonBrightnessDown
+	brightness.sh - "$BRIGHTNESS_STEP"
+
+# terminal
+super + Return
+	$TERM
+ctrl + alt + t
+	$TERM
+
+# langs
+super + space
+	toggle-lang.sh
