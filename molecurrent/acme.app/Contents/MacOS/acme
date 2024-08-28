@@ -6,6 +6,7 @@ if ! [[ :$PATH: =~ :$PLAN9/bin: ]]
 then
 	PATH=$PATH:$PLAN9/bin
 fi
+cd $HOME
 acme -f /mnt/font/Menlo-Regular/14a/font
 exit 0
 
