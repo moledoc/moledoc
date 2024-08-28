@@ -53,6 +53,7 @@ git config --global color.ui false
 git config --global core.editor "ed"
 git config --global core.pager "cat"
 git config --global push.autoSetupRemote "true"
+# git config --global commit.gpgsign true
 
 git config --global user.name "<username>"
 git config --global user.email "<email>"
@@ -139,6 +140,7 @@ cd <untarred dir>
 ./configure && make && sudo make install
 cd ../
 rm <tar>
+sudo port -v selfupdate
 ```
 
 ## Author
