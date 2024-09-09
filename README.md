@@ -8,14 +8,3 @@ How the handle came to be:
 Since I used `moledoc` keyword with my documentations, then initially this repository was for documentations.
 Specifically, this repository was and still is a collection of run-down documentations I've written to have a place to look up more concise/relevant documentation to me.
 However, since this readme is shown on my github profile, then I've added a bit about myself to this readme.
-
-## What are my next projects
-
-* create header-only like libraries for data structure, algorithms and other concpets/ideas;
-* go through past advent of code problems ([aoc](https://github.com/moledoc/aoc.git))
-* get familiar with Arduino
-* Casey Muratori's computer enhance program
-
-### Maybe projects
-* restart notification system project ([beeper](https://github.com/moledoc/beeper.git))
-* learn GPU programming
