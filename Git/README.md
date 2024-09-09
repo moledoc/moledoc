@@ -45,6 +45,13 @@ git remote add secondary <path to second git repo>
 
 **NB!** This will make the two repos mirrored.
 
+You can change the remote with
+
+```sh
+git remote set-url origin git@github.com:<username>/<repo>.git # to ssh
+git remote set-url origin https://github.com/<username>/<repo>.git # to https
+```
+
 To configure git behaviour, we use the command **config**.
 This can either be `--local` (in that specific repo) or `--global` (applies to all local repos).
 Useful examples:
