@@ -95,6 +95,7 @@ As such, I've had no need to dig into it too deeply, but sometime in the future 
 	* regex search `:/<regex_start>/,/<regex_end>/`
 * to edit the file, use `Edit` - it works with selection (see above) and has the following action options (**NOTE:** middle click):
 	* **NOTE:** to use tab in `Edit` literally type tab  and not `\t`
+	* **NOTE:** if action is used, then range can be left out. In that case the action is performed on the highlighted text
 	* range `Edit <lower>,<upper>`
 	* search `Edit [+-]/<regex>`
 	* line number `Edit =`
@@ -131,7 +132,7 @@ As such, I've had no need to dig into it too deeply, but sometime in the future 
 * comment in selection: `Edit s/\/\/ (.*)/\1/g`
 * indent left: `Edit s/ (.*)/\1/g`
 * indent right: `Edit s/(.*)/ \1/g`
-* remove ansi color chars: `Edit ,s/\[[0-9]*m//g`
+* remove ansi color chars: `Edit ,s/\[[0-9;]+m//g`
 
 ## Mouse/Keyboard
 
