@@ -219,15 +219,18 @@ Here are some examples:
 
 ## Resources
 
+
 * [plan9port](https://github.com/9fans/plan9port.git)
 * [tour of acme](https://research.swtch.com/acme)
 * [acme man page](https://9fans.github.io/plan9port/man/man1/acme.html)
 * [using acme editor](https://groups.google.com/g/comp.os.plan9/c/\_YUEVbTFuME/m/tJHB8y8-0vYJ)
 * [Sam editor (to read on Edit command)](https://9p.io/sys/doc/sam/sam.html)
-* [fontsrv](https://9fans.github.io/plan9port/man/man4/fontsrv.html)
-* [some font stuff I found](https://9fans.topicbox.com/groups/9fans/Td0ab6c3112c95493-M4005dd63b8324e8b0133f10d)
 * [acme mouse chords](http://acme.cat-v.org/mouse)
 * [plan 9 man pages](https://man.cat-v.org/plan_9/4/)
+* [font man page](https://9fans.github.io/plan9port/man/man7/font.html)
+* [fontsrv man page](https://9fans.github.io/plan9port/man/man4/fontsrv.html)
+* [default fonts](https://plan9port.googlesource.com/plan9/+/fc638f7bd4d11352c44c8d4c6fc6d15e90f17ddb/font)
+* [some font stuff I found](https://9fans.topicbox.com/groups/9fans/Td0ab6c3112c95493-M4005dd63b8324e8b0133f10d)
 
 ## Author
 
