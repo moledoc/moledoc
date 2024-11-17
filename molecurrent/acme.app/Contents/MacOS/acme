@@ -4,7 +4,7 @@ source $HOME/.bashrc
 PLAN9=${PLAN9:-/usr/local/plan9}
 if ! [[ :$PATH: =~ :$PLAN9/bin: ]]
 then
-	PATH=$PATH:$PLAN9/bin
+	PATH=$PATH:$PLAN9/bin:/usr/local/go/bin:$HOME/go/bin:/opt/local/bin
 fi
 cd $HOME
 acme -f /mnt/font/Menlo-Regular/14a/font
