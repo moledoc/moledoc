@@ -37,7 +37,12 @@ The interface for MacPorts is `port`, which is from the first glance similar to 
 
 ## Homebrew
 
-I didn't try it out yet.
+install with 
+
+```sh
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+Essentially works like `apt`.
 
 ## Applications
 
