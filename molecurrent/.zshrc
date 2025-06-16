@@ -1,5 +1,6 @@
-export PLAN9=/usr/local/plan9
-export PATH=$PATH:$PLAN9/bin:/usr/local/go/bin:$HOME/go/bin:/opt/local/bin
+# export PLAN9=/usr/local/plan9
+# export PATH=$PLAN9/bin:/usr/local/go/bin:$HOME/go/bin:/opt/local/bin:/opt/homebrew/bin:$PATH
+export PATH=/usr/local/bin:/usr/local/go/bin:$HOME/go/bin:/opt/local/bin:/opt/homebrew/bin:$PATH
 
 alias acme="acme -f /mnt/font/Menlo-Regular/14a/font"
 alias lsp="pgrep \"acme-lsp\" | parallel 'kill -9 {}';ACME_LSP_CONFIG=$HOME/.config/acme-lsp/config.toml acme-lsp -hidediag &"
