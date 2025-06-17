@@ -19,10 +19,6 @@ sudo chown root:wheel <file>
 sudo chmod 600 <file>
 ```
 
-## TODO
-
-* rename `/Applications/vault` to `/Appliations/vault.app`
-
 ## Author
 
 Meelis Utt
