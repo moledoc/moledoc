@@ -3,7 +3,7 @@ SHELL=/bin/sh
 
 read -s -p "Master key: " pw_key
 echo
-echo "$pw_key"
+echo 
 
 cd /Applications/vault.app/Contents/MacOS
 contents=$(cat ./vault.contents)
