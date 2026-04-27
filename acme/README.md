@@ -20,12 +20,13 @@ git clone --depth=1 https://github.com/9fans/plan9port.git plan9
 sudo chown -R <user>:<user> plan9
 cd plan9
 ./INSTALL
+# for rebuilding something, cd into the directory and `mk (-a) install`
 ```
 
 Add the following lines to your shell of choice
 
 ```sh
-export PLAN9=$HOME/plan9
+export PLAN9=/path/to/plan9
 export PATH=$PATH:$PLAN9/bin
 ```
 
@@ -68,7 +69,9 @@ To run acme with a specific font
 acme -f /mnt/font/<font_name>/<size>a/font
 ```
 
-I like to use font `/mnt/font/DejaVuSansMono/14a/font`, at least on my linux machine.
+Fonts I use:
+* linux - /mnt/font/DejaVuSansMono/14a/font
+* mac - /mnt/font/DMenlo-Regular/14a/font
 
 Font service doesn't have to run, so no need to start it during startup.
 
@@ -162,7 +165,7 @@ As such, I've had no need to dig into it too deeply, but sometime in the future 
 	* `ctrl-j` enter
 	* `ctrl-u` delete from cursor to start of line
 	* `ctrl-w` delete word before the cursor
-	* macOS had copy/paste/cut/undo/redo, so I have a [patch](../molecurrent/acme_text.patch) to enable them on linux; keybindings are as follow:
+	* macOS had copy/paste/cut/undo/redo, so I patched acme to enable them on linux (see [Patches section](#patches)); keybindings are as follow:
 		* `ctrl-b` - copy
 		* `ctrl-v` - paste
 		* `ctrl-x` - cut
@@ -231,6 +234,39 @@ Here are some examples:
 * [fontsrv man page](https://9fans.github.io/plan9port/man/man4/fontsrv.html)
 * [default fonts](https://plan9port.googlesource.com/plan9/+/fc638f7bd4d11352c44c8d4c6fc6d15e90f17ddb/font)
 * [some font stuff I found](https://9fans.topicbox.com/groups/9fans/Td0ab6c3112c95493-M4005dd63b8324e8b0133f10d)
+
+## Patches
+
+I've added some functionality for myself.
+The changes are not 100% ideal, but for the most part (and for current iteration) they are good enough.
+Changes include:
+* linux keyboard shortcuts
+* colorscheme change
+* where new window is opened (TODO)
+* keyword highlighting (WIP)
+* visible line numbers superimposed on the scrollbar (TODO)
+
+Patch can be found [here](../molecurrent/acme.patch).
+
+Creating patch
+
+```sh
+cd $PLAN9
+rm acme.patch
+git ls-files --others --exclude-standard -z | while IFS= read -r -d '' f;
+do
+	git diff --no-index /dev/null "$f" 
+done > acme.patch
+git diff >> acme.patch
+```
+
+Apply patch
+```sh
+cd $PLAN9
+git apply --stat acme.patch # dry-run
+git apply acme.patch
+mk -a install
+```
 
 ## Author
 

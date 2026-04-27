@@ -1,0 +1,806 @@
+diff --git a/acme.patch b/acme.patch
+new file mode 100644
+index 00000000..e69de29b
+diff --git a/include/keywords.h b/include/keywords.h
+new file mode 100644
+index 00000000..1ca067dd
+--- /dev/null
++++ b/include/keywords.h
+@@ -0,0 +1,501 @@
++
++static char *comment_keywords[] = {
++	"TODO",  "NOTE",	"FIXME",	  "REVIEWME", "HACK",	 "REMOVEME",
++	"MAYBE", "EXAMPLE", "REFACTORME", "HERE",	 "IMPROVEME", 
++};
++
++static char *kws__[] = {
++	"__init__",
++    "__STDC_VERSION__",
++    "__STDC__"
++};
++
++static char *kws_A[] = {
++    "ArrayList",
++    "Arrays"
++};
++
++static char *kws_B[] = {
++    "BUFSIZ",
++    "Boolean",
++    "BufferedReader",
++    "BufferedWriter",
++    "Byte",
++    "ByteBuffer"
++};
++
++static char *kws_b[] = {
++    "break",
++    "bin",
++    "bool",
++    "boolean",
++    "byte"
++};
++
++static char *kws_C[] = {
++    "Character",
++    "Collections"
++};
++
++static char *kws_c[] = {
++    "calloc",
++    "case",
++    "catch",
++    "chan",
++    "char",
++    "chr",
++    "class",
++    "clock",
++    "clock_t",
++    "collections",
++    "compile",
++    "const",
++    "continue",
++    "cos",
++    "csv",
++    "ctime",
++	"complex64",
++	"complex128"
++};
++
++static char *kws_D[] = {
++    "Date",
++    "Double"
++};
++
++static char *kws_d[] = {
++    "def",
++    "default",
++    "defer",
++	"define",
++	"defined",
++    "del",
++    "dict",
++    "difftime",
++    "dir",
++    "div_t",
++    "do",
++    "double"
++};
++
++static char *kws_E[] = {
++    "EOF",
++    "EXIT_FAILURE",
++    "EXIT_SUCCESS",
++    "Exception"
++};
++
++static char *kws_e[] = {
++    "else",
++    "elif",
++	"endif",
++    "enum",
++    "enumerate",
++    "eval",
++    "except",
++    "exec",
++    "exit",
++    "exp",
++    "extends",
++    "extern"
++};
++
++static char *kws_F[] = {
++    "FILE",
++    "FOPEN_MAX",
++    "False",
++    "File",
++    "FileInputStream",
++    "FileOutputStream",
++    "Files",
++    "Float"
++};
++
++static char *kws_f[] = {
++    "fallthrough",
++    "false",
++    "fclose",
++    "fflush",
++    "filter",
++    "final",
++    "finally",
++    "float",
++    "float32",
++    "float64",
++    "fopen",
++    "for",
++    "format",
++    "fpos_t",
++    "fprintf",
++    "fractions",
++    "fread",
++    "free",
++    "from",
++    "fscanf",
++    "fseek",
++    "ftell",
++    "func",
++    "functools",
++    "fwrite"
++};
++
++static char *kws_g[] = {
++    "getchar",
++    "global",
++    "go",
++    "goto"
++};
++
++static char *kws_H[] = {
++    "HashMap",
++    "HashSet"
++};
++
++static char *kws_h[] = {
++    "help",
++    "hex",
++    "http"
++};
++
++static char *kws_I[] = {
++    "InputStream",
++    "Integer"
++};
++
++static char *kws_i[] = {
++    "if",
++	"ifdef",
++	"ifndef",
++    "implements",
++    "import",
++    "in",
++	"include",
++    "inline",
++    "input",
++    "instanceof",
++    "int",
++	"int8_t",
++	"int16_t",
++	"int32_t",
++	"int64_t",
++	"intptr_t",
++    "interface",
++    "is",
++    "itertools"
++};
++
++static char *kws_j[] = {
++    "json"
++};
++
++static char *kws_L[] = {
++    "LinkedList",
++    "Long"
++};
++
++static char *kws_l[] = {
++    "lambda",
++    "ldiv_t",
++    "len",
++    "list",
++    "lldiv_t",
++    "log",
++    "logging",
++    "long"
++};
++
++static char *kws_M[] = {
++    "Math"
++};
++
++static char *kws_m[] = {
++    "malloc",
++    "map",
++    "math",
++    "max",
++    "memcmp",
++    "memcpy",
++    "memmove",
++    "memset",
++    "min",
++    "mktime",
++    "multiprocessing"
++};
++
++static char *kws_N[] = {
++    "NULL",
++    "None"
++};
++
++static char *kws_n[] = {
++    "native",
++    "new",
++    "nonlocal",
++    "not",
++    "null",
++    "nullptr"
++};
++
++static char *kws_O[] = {
++    "Object",
++    "Optional",
++    "OutputStream"
++};
++
++static char *kws_o[] = {
++    "oct",
++    "open",
++    "or",
++    "ord",
++    "os"
++};
++
++static char *kws_P[] = {
++    "Paths",
++    "PrintWriter"
++};
++
++static char *kws_p[] = {
++    "package",
++    "pass",
++    "pathlib",
++    "pickle",
++    "pow",
++	"pragma",
++    "print",
++    "printf",
++    "private",
++    "protected",
++    "ptrdiff_t",
++    "public",
++    "putchar",
++    "puts"
++};
++
++static char *kws_R[] = {
++    "RAND_MAX",
++    "Random",
++    "Runnable",
++    "RuntimeException"
++};
++
++static char *kws_r[] = {
++    "raise",
++    "random",
++    "range",
++    "re",
++    "realloc",
++    "register",
++    "restrict",
++    "return",
++    "reversed",
++    "rewind",
++    "round",
++	"rune"
++};
++
++static char *kws_S[] = {
++    "ServerSocket",
++    "Short",
++    "Socket",
++    "String",
++    "StringBuffer",
++    "StringBuilder",
++    "System"
++};
++
++static char *kws_s[] = {
++    "scanf",
++    "select",
++    "set",
++    "short",
++    "shutil",
++    "signed",
++    "sin",
++    "size_t",
++    "sizeof",
++    "snprintf",
++    "socket",
++    "sorted",
++    "sprintf",
++    "sqlite3",
++    "sqrt",
++    "static",
++    "statistics",
++    "stderr",
++    "stdin",
++    "stdout",
++    "str",
++    "strcat",
++    "strchr",
++    "strcmp",
++    "strcpy",
++    "strftime",
++    "strictfp",
++    "strlen",
++    "strncat",
++    "strncmp",
++    "strncpy",
++    "strrchr",
++    "strstr",
++    "strtol",
++    "strtoul",
++    "struct",
++    "subprocess",
++    "sum",
++    "super",
++    "switch",
++    "synchronized",
++    "sys"
++};
++
++static char *kws_T[] = {
++    "TMP_MAX",
++    "Thread",
++    "Throwable",
++    "TreeMap",
++    "TreeSet",
++    "True"
++};
++
++static char *kws_t[] = {
++    "tan",
++    "this",
++    "threading",
++    "throw",
++    "throws",
++    "time",
++    "time_t",
++    "transient",
++    "true",
++    "try",
++    "tuple",
++    "type",
++    "typedef",
++    "typing"
++};
++
++static char *kws_U[] = {
++    "URI",
++    "URL",
++    "UUID"
++};
++
++static char *kws_u[] = {
++    "union",
++    "unsigned",
++    "urllib",
++    "uuid",
++	"uchar",
++	"uint8_t",
++	"uint16_t",
++	"uint32_t",
++	"uint64_t",
++	"uintptr_t",
++};
++
++static char *kws_V[] = {
++    "Vector"
++};
++
++static char *kws_v[] = {
++    "va_arg",
++    "va_end",
++    "va_list",
++    "va_start",
++    "var",
++    "vars",
++    "void",
++    "volatile"
++};
++
++static char *kws_W[] = {
++    "WEOF"
++};
++
++static char *kws_w[] = {
++    "wchar_t",
++    "while",
++    "with"
++};
++
++static char *kws_y[] = {
++    "yield"
++};
++
++static char *kws_z[] = {
++    "zip"
++};
++
++
++typedef struct {
++	char **words;
++	size_t count;
++} kws_bucket;
++
++static kws_bucket kws[128] = {
++
++	['_'] = { kws__, sizeof(kws__) / sizeof(*kws__) },
++
++    ['A'] = { kws_A, sizeof(kws_A) / sizeof(*kws_A) },
++    ['B'] = { kws_B, sizeof(kws_B) / sizeof(*kws_B) },
++    ['b'] = { kws_b, sizeof(kws_b) / sizeof(*kws_b) },
++
++    ['C'] = { kws_C, sizeof(kws_C) / sizeof(*kws_C) },
++    ['c'] = { kws_c, sizeof(kws_c) / sizeof(*kws_c) },
++
++    ['D'] = { kws_D, sizeof(kws_D) / sizeof(*kws_D) },
++    ['d'] = { kws_d, sizeof(kws_d) / sizeof(*kws_d) },
++
++    ['E'] = { kws_E, sizeof(kws_E) / sizeof(*kws_E) },
++    ['e'] = { kws_e, sizeof(kws_e) / sizeof(*kws_e) },
++
++    ['F'] = { kws_F, sizeof(kws_F) / sizeof(*kws_F) },
++    ['f'] = { kws_f, sizeof(kws_f) / sizeof(*kws_f) },
++
++    ['g'] = { kws_g, sizeof(kws_g) / sizeof(*kws_g) },
++
++    ['H'] = { kws_H, sizeof(kws_H) / sizeof(*kws_H) },
++    ['h'] = { kws_h, sizeof(kws_h) / sizeof(*kws_h) },
++
++    ['I'] = { kws_I, sizeof(kws_I) / sizeof(*kws_I) },
++    ['i'] = { kws_i, sizeof(kws_i) / sizeof(*kws_i) },
++
++    ['j'] = { kws_j, sizeof(kws_j) / sizeof(*kws_j) },
++
++    ['L'] = { kws_L, sizeof(kws_L) / sizeof(*kws_L) },
++    ['l'] = { kws_l, sizeof(kws_l) / sizeof(*kws_l) },
++
++    ['M'] = { kws_M, sizeof(kws_M) / sizeof(*kws_M) },
++    ['m'] = { kws_m, sizeof(kws_m) / sizeof(*kws_m) },
++
++    ['N'] = { kws_N, sizeof(kws_N) / sizeof(*kws_N) },
++    ['n'] = { kws_n, sizeof(kws_n) / sizeof(*kws_n) },
++
++    ['O'] = { kws_O, sizeof(kws_O) / sizeof(*kws_O) },
++    ['o'] = { kws_o, sizeof(kws_o) / sizeof(*kws_o) },
++
++    ['P'] = { kws_P, sizeof(kws_P) / sizeof(*kws_P) },
++    ['p'] = { kws_p, sizeof(kws_p) / sizeof(*kws_p) },
++
++    ['R'] = { kws_R, sizeof(kws_R) / sizeof(*kws_R) },
++    ['r'] = { kws_r, sizeof(kws_r) / sizeof(*kws_r) },
++
++    ['S'] = { kws_S, sizeof(kws_S) / sizeof(*kws_S) },
++    ['s'] = { kws_s, sizeof(kws_s) / sizeof(*kws_s) },
++
++    ['T'] = { kws_T, sizeof(kws_T) / sizeof(*kws_T) },
++    ['t'] = { kws_t, sizeof(kws_t) / sizeof(*kws_t) },
++
++    ['U'] = { kws_U, sizeof(kws_U) / sizeof(*kws_U) },
++    ['u'] = { kws_u, sizeof(kws_u) / sizeof(*kws_u) },
++
++    ['V'] = { kws_V, sizeof(kws_V) / sizeof(*kws_V) },
++    ['v'] = { kws_v, sizeof(kws_v) / sizeof(*kws_v) },
++
++    ['W'] = { kws_W, sizeof(kws_W) / sizeof(*kws_W) },
++    ['w'] = { kws_w, sizeof(kws_w) / sizeof(*kws_w) },
++
++    ['y'] = { kws_y, sizeof(kws_y) / sizeof(*kws_y) },
++    ['z'] = { kws_z, sizeof(kws_z) / sizeof(*kws_z) }
++};
+diff --git a/include/draw.h b/include/draw.h
+index 2abfd319..48dec7a3 100644
+--- a/include/draw.h
++++ b/include/draw.h
+@@ -54,6 +54,8 @@ extern	int	Pfmt(Fmt*);
+ #define 	DGreyblue	0x005DBBFF
+ #define 	DPalegreyblue	0x4993DDFF
+ #define 	DPurpleblue	0x8888CCFF
++#define		DGrey 0x808080FF
++#define		DYellowGold 0xFFC400FF
+ 
+ #define 	DNotacolor	0xFFFFFF00
+ #define 	DNofill		DNotacolor
+diff --git a/include/frame.h b/include/frame.h
+index 590a7b8c..695cb466 100644
+--- a/include/frame.h
++++ b/include/frame.h
+@@ -15,6 +15,13 @@ enum{
+ 	BORD,
+ 	TEXT,
+ 	HTEXT,
++	KEYWORD,
++	NUMBER,
++	QUOTE,
++	COMMENT,
++	COMMENT_KEYWORD,
++	ESCAPE,
++	PAREN,
+ 	NCOL
+ };
+ 
+diff --git a/src/cmd/acme/acme.c b/src/cmd/acme/acme.c
+index e922934f..409b1f72 100644
+--- a/src/cmd/acme/acme.c
++++ b/src/cmd/acme/acme.c
+@@ -1048,11 +1048,30 @@ iconinit(void)
+ 		tagcols[HTEXT] = display->black;
+ 
+ 		/* Yellow */
++		/*
+ 		textcols[BACK] = allocimagemix(display, DPaleyellow, DWhite);
+ 		textcols[HIGH] = allocimage(display, Rect(0,0,1,1), screen->chan, 1, DDarkyellow);
+ 		textcols[BORD] = allocimage(display, Rect(0,0,1,1), screen->chan, 1, DYellowgreen);
+ 		textcols[TEXT] = display->black;
+ 		textcols[HTEXT] = display->black;
++		*/
++
++
++		/* White */
++		textcols[BACK] = allocimagemix(display, DWhite, DWhite);
++		textcols[HIGH] = allocimage(display, Rect(0,0,1,1), screen->chan, 1, DDarkyellow);
++		textcols[BORD] = allocimage(display, Rect(0,0,1,1), screen->chan, 1, DBlack);
++		textcols[TEXT] = display->black;
++		textcols[HTEXT] = display->black;
++		textcols[KEYWORD] = allocimage(display, Rect(0,0,1,1), screen->chan, 1, DBlue);
++		textcols[NUMBER] = allocimage(display, Rect(0,0,1,1), screen->chan, 1, DMagenta);
++		textcols[QUOTE] = allocimage(display, Rect(0,0,1,1), screen->chan, 1, DMedgreen);
++		textcols[COMMENT] = allocimage(display, Rect(0,0,1,1), screen->chan, 1, DGrey);
++		textcols[COMMENT_KEYWORD] = allocimage(display, Rect(0,0,1,1), screen->chan, 1, DYellowGold);
++
++		textcols[ESCAPE] = allocimage(display, Rect(0,0,1,1), screen->chan, 1, DRed);
++		textcols[PAREN] = allocimage(display, Rect(0,0,1,1), screen->chan, 1, DYellowgreen);
++
+ 	}
+ 
+ 	r = Rect(0, 0, Scrollwid, font->height+1);
+diff --git a/src/cmd/acme/cols.c b/src/cmd/acme/cols.c
+index a53280c4..06478c00 100644
+--- a/src/cmd/acme/cols.c
++++ b/src/cmd/acme/cols.c
+@@ -96,6 +96,8 @@ coladd(Column *c, Window *w, Window *clone, int y)
+ 		else
+ 			ymax = c->r.max.y;
+ 
++		// TODO: change window open location somewhere here
++
+ 		/* new window must start after v's tag ends */
+ 		y = max(y, v->tagtop.max.y+Border);
+ 
+diff --git a/src/cmd/acme/scrl.c b/src/cmd/acme/scrl.c
+index 6504699d..1bb977a9 100644
+--- a/src/cmd/acme/scrl.c
++++ b/src/cmd/acme/scrl.c
+@@ -1,3 +1,4 @@
++#include <stdio.h>
+ #include <u.h>
+ #include <libc.h>
+ #include <draw.h>
+diff --git a/src/cmd/acme/text.c b/src/cmd/acme/text.c
+index 09422dda..2097c0c6 100644
+--- a/src/cmd/acme/text.c
++++ b/src/cmd/acme/text.c
+@@ -760,15 +760,18 @@ texttype(Text *t, Rune r)
+ 			q0++;
+ 		textshow(t, q0, q0, TRUE);
+ 		return;
+-	case Kcmd+'c':	/* %C: copy */
++	case Kcmd+'c':	/* %C: copy mac */
++	case 0x02:	/* ^B: copy linux - conflict with ^C (cancel)*/
+ 		typecommit(t);
+ 		cut(t, t, nil, TRUE, FALSE, nil, 0);
+ 		return;
+-	case Kcmd+'z':	/* %Z: undo */
++	case Kcmd+'z':	/* %Z: undo - mac */
++	case 0x1a:	/* %Z: undo - linux */
+ 	 	typecommit(t);
+ 		undo(t, nil, nil, TRUE, 0, nil, 0);
+ 		return;
+-	case Kcmd+'Z':	/* %-shift-Z: redo */
++	case Kcmd+'Z':	/* %-shift-Z: redo - mac*/
++	case 0x19:	/* ^Y: redo - linux */
+ 	 	typecommit(t);
+ 		undo(t, nil, nil, FALSE, 0, nil, 0);
+ 		return;
+@@ -796,7 +799,8 @@ texttype(Text *t, Rune r)
+ 	}
+ 	/* cut/paste must be done after the seq++/filemark */
+ 	switch(r){
+-	case Kcmd+'x':	/* %X: cut */
++	case Kcmd+'x':	/* %X: cut - mac */
++	case 0x18:	/* ^X: cut - linux */
+ 		typecommit(t);
+ 		if(t->what == Body){
+ 			seq++;
+@@ -806,7 +810,8 @@ texttype(Text *t, Rune r)
+ 		textshow(t, t->q0, t->q0, 1);
+ 		t->iq1 = t->q0;
+ 		return;
+-	case Kcmd+'v':	/* %V: paste */
++	case Kcmd+'v':	/* %V: paste - mac */
++	case 0x16:	/* ^V: paste - linux */
+ 		typecommit(t);
+ 		if(t->what == Body){
+ 			seq++;
+@@ -833,7 +838,7 @@ texttype(Text *t, Rune r)
+ 			return;
+ 		nr = runestrlen(rp);
+ 		break;	/* fall through to normal insertion case */
+-	case 0x1B:
++	case 0x1B: // esc
+ 		if(t->eq0 != ~0) {
+ 			if(t->eq0 <= t->q0)
+ 				textsetselect(t, t->eq0, t->q0);
+diff --git a/src/libframe/frdraw.c b/src/libframe/frdraw.c
+index 9573b1c8..e590e319 100644
+--- a/src/libframe/frdraw.c
++++ b/src/libframe/frdraw.c
+@@ -1,8 +1,128 @@
+ #include <u.h>
+ #include <libc.h>
+ #include <draw.h>
++#include <keywords.h>
+ #include <mouse.h>
+ #include <frame.h>
++#include <stdio.h>
++#include <string.h>
++
++static char offset_buf[1024] = {0};
++static char buf[1024] = {0};
++	
++void hl(Frame *f, Point pt, Frbox *b, Image *back) {
++	for (int i=HTEXT; i<NCOL; i++) {
++		if (f->cols[i] == NULL) {
++			return;
++		}
++	}
++
++	int offset = 0;
++	for (char *ptr = (char *)b->ptr; offset < b->nrune && *ptr != '\0'; ptr++, offset++)  {
++		if ('a' <= *ptr && *ptr <= 'z' || 'A' <= *ptr && *ptr <= 'Z') {
++			int offset_s = offset;
++			offset++;
++			ptr++;
++			for (; offset < b->nrune && *ptr != '\0' && 
++				(('a' <= *ptr && *ptr <= 'z') ||
++					('A' <= *ptr && *ptr <= 'Z') || 
++					('0' <= *ptr && *ptr <= '9') || 
++					*ptr == '_'); ptr++, offset++) {}
++			int buf_len = offset-offset_s;
++			memcpy(buf, (char *)b->ptr+offset_s, buf_len);
++			memcpy(offset_buf, (char *)b->ptr, offset);
++
++			int matched = 0;
++
++			for (int i=0; !matched && i<sizeof(comment_keywords)/sizeof(comment_keywords[0]); i++) {
++				if (strcmp(buf, comment_keywords[i]) == 0) {
++					int bufwid = stringnwidth(f->font, offset_buf, offset_s);
++					stringbg(f->b, (Point){.x=pt.x+bufwid, .y=pt.y}, f->cols[COMMENT_KEYWORD], ZP, f->font, buf, back, ZP);
++					matched = 1;
++					break;
++				}
++			}
++
++			kws_bucket keywords = kws[(int)buf[0]];
++			for (size_t i = 0; i < keywords.count; i++) {
++				if (strcmp(buf, keywords.words[i]) == 0) {
++					int bufwid = stringnwidth(f->font, offset_buf, offset_s);
++					stringbg(f->b, (Point){.x=pt.x+bufwid, .y=pt.y}, f->cols[KEYWORD], ZP, f->font, buf, back, ZP);
++					matched = 1;
++					break;
++				}
++			}
++
++			memset(buf, 0, buf_len);
++			memset(offset_buf, 0, offset);
++			// NOTE: we passed end; step back
++			offset--; ptr--;
++		
++		} else if ('0' <= *ptr && *ptr <= '9') {
++			int offset_s = offset;
++			offset++;
++			ptr++;
++			for (; offset < b->nrune && *ptr != '\0' && 
++				('0' <= *ptr && *ptr <= '9' || 
++					*ptr == '.' ||
++					// NOTE: include a-zA-Z, so that invalid nr will be filtered out; eg 0x7 - valid, 9l is not
++					('a' <= *ptr && *ptr <= 'z') ||
++					('A' <= *ptr && *ptr <= 'Z')); ptr++, offset++) {}
++			int buf_len = offset-offset_s;
++			memcpy(buf, (char *)b->ptr+offset_s, buf_len);
++			memcpy(offset_buf, (char *)b->ptr, offset);
++
++			char *end;
++			strtold(buf, &end);
++			if (buf != end && *end == '\0') {
++				int bufwid = stringnwidth(f->font, offset_buf, offset_s);
++				stringbg(f->b, (Point){.x=pt.x+bufwid, .y=pt.y}, f->cols[NUMBER], ZP, f->font, buf, back, ZP);
++			}
++
++			memset(buf, 0, buf_len);
++			memset(offset_buf, 0, offset);
++			// NOTE: we passed end; step back
++			offset--; ptr--;
++		} else if (*ptr == '"' || *ptr == '\'') {
++			buf[0] = *ptr;
++			memcpy(offset_buf, (char *)b->ptr, offset);
++			int bufwid = stringnwidth(f->font, offset_buf, offset);
++			stringbg(f->b, (Point){.x=pt.x+bufwid, .y=pt.y}, f->cols[QUOTE], ZP, f->font, buf, back, ZP);
++			buf[0] = 0;
++			memset(offset_buf, 0, offset);
++		} else if (*ptr == '\\') {
++			buf[0] = '\\';
++			buf[1] = *(ptr+1);
++			memcpy(offset_buf, (char *)b->ptr, offset);
++			int bufwid = stringnwidth(f->font, offset_buf, offset);
++			stringbg(f->b, (Point){.x=pt.x+bufwid, .y=pt.y}, f->cols[ESCAPE], ZP, f->font, buf, back, ZP);
++			memset(buf, 0, 2);
++			memset(offset_buf, 0, offset);
++			// NOTE: step over escape end
++			offset++; ptr++;
++		} else if (*ptr == '(' || *ptr == ')' || 
++					*ptr == '[' || *ptr == ']' || 
++					*ptr == '{' || *ptr == '}') {
++			buf[0] = *ptr;
++			memcpy(offset_buf, (char *)b->ptr, offset);
++			int bufwid = stringnwidth(f->font, offset_buf, offset);
++			stringbg(f->b, (Point){.x=pt.x+bufwid, .y=pt.y}, f->cols[PAREN], ZP, f->font, buf, back, ZP);
++			buf[0] = 0;
++			memset(offset_buf, 0, offset);
++		} else if (*ptr == '/' && (*(ptr+1) == '/' || *(ptr+1) == '*') || 
++				(*ptr == '*' && *(ptr+1) == '/')) {
++			buf[0] = *ptr;
++			buf[1] = *(ptr+1);
++			memcpy(offset_buf, (char *)b->ptr, offset);
++			int bufwid = stringnwidth(f->font, offset_buf, offset);
++			stringbg(f->b, (Point){.x=pt.x+bufwid, .y=pt.y}, f->cols[PAREN], ZP, f->font, buf, back, ZP);
++			memset(buf, 0, 2);
++			memset(offset_buf, 0, offset);
++			// NOTE: step over comment end
++			offset++; ptr++;
++		}
++	}
++}
+ 
+ void
+ _frdrawtext(Frame *f, Point pt, Image *text, Image *back)
+@@ -14,6 +134,7 @@ _frdrawtext(Frame *f, Point pt, Image *text, Image *back)
+ 		_frcklinewrap(f, &pt, b);
+ 		if(!f->noredraw && b->nrune >= 0)
+ 			stringbg(f->b, pt, text, ZP, f->font, (char*)b->ptr, back, ZP);
++			hl(f, pt, b, back);
+ 		pt.x += b->wid;
+ 	}
+ }
+@@ -101,8 +222,10 @@ frdrawsel0(Frame *f, Point pt, ulong p0, ulong p1, Image *back, Image *text)
+ 		if(x > f->r.max.x)
+ 			x = f->r.max.x;
+ 		draw(f->b, Rect(pt.x, pt.y, x, pt.y+f->font->height), back, nil, pt);
+-		if(b->nrune >= 0)
++		if(b->nrune >= 0) {
+ 			stringnbg(f->b, pt, text, ZP, f->font, ptr, nr, back, ZP);
++			// hl(f, qt, b, back);
++		}
+ 		pt.x += w;
+ 	    Continue:
+ 		b++;
