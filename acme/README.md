@@ -244,7 +244,12 @@ Changes include:
 * colorscheme change
 * where new window is opened (TODO)
 * keyword highlighting (WIP)
-* visible line numbers superimposed on the scrollbar (TODO)
+* visible line numbers superimposed on the scrollbar (TODO: no todos marked)
+* shift-click highlights from cursor to click (TODO: no todos marked)
+* arrow up/down doesn't move page, move to line up/down (TODO)
+* shift arrow highlights text (TODO)
+
+MAYBE: TODO: move the `hl()` from libframe to /acme.
 
 Patch can be found [here](../molecurrent/acme.patch).
 
@@ -267,6 +272,11 @@ git apply --stat acme.patch # dry-run
 git apply acme.patch
 mk -a install
 ```
+
+## TODOs
+
+* update the doc once I'm finished with the patches
+* add other setup related updates
 
 ## Author
 
