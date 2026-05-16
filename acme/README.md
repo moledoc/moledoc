@@ -71,9 +71,15 @@ acme -f /mnt/font/<font_name>/<size>a/font
 
 Fonts I use:
 * linux - /mnt/font/DejaVuSansMono/14a/font
-* mac - /mnt/font/DMenlo-Regular/14a/font
+* mac - /mnt/font/Menlo-Regular/14a/font
 
 Font service doesn't have to run, so no need to start it during startup.
+
+To check the fonts from inside acme
+```sh
+9p read acme/$winid/ctl | awk '{print $7}'
+printenv font
+```
 
 ## Plumber
 
