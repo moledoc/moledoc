@@ -1,14 +1,12 @@
 # vault
 
-convenience wrapper around `pw`.
+vaultless password manager using `pwgui`[https://github.com/moledoc/pw]
 
 ## Dependencies
 
-* [pw](https://github.com/moledoc/pw)
-* fzf
-* BSD `sed`/`grep` to exist in `/usr/bin`
-* file named `vault.contents` in `/Applications/vault/Contents/MacOS` that contains salt, pepper, domain and extra flags in format:
-	* `salt pepper domain ("extra args")`; **NOTE:** extra args are optional and surrounded by double-quotes (")
+* pwgui
+* file named `vault.contents` in `/Applications/vault/Contents/MacOS` that contains salt, pepper, domain and length flag:
+	* `salt pepper domain [length]`
 
 ## Author
 
