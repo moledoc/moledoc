@@ -7,10 +7,6 @@ source $HOME/.zshrc
 PLAN9=${PLAN9:-$HOME/plan9port}
 PATH=$HOME/go/bin:$HOME/venv/bin:/usr/local/bin:/opt/homebrew/bin:/usr/local/go/bin:$PATH:$PLAN9/bin
 
-# if ! [[ :$PATH: =~ :$PLAN9/bin: ]]
-# then
-# fi
-
 cd $HOME
 
 pgrep plumber >/dev/null || $PLAN9/bin/plumber

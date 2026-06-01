@@ -4,6 +4,8 @@
 I highly recommend watching this [tour of acme](https://research.swtch.com/acme) to get started.
 To get more details about the editor, I recommend checking out links in the [Resources](#Resources) section or rest of this doc.
 
+I'm maintaining a fork of plan9port (mainly for acme), where I've added some 'modern developer' friendly features.
+
 ## Appeal
 
 * simple, yet powerful interface
@@ -13,46 +15,74 @@ To get more details about the editor, I recommend checking out links in the [Res
 
 ## Installation
 
+Some other setup info also available at [molecurrent](../molecurrent/README.md#plan9port).
+
 ```sh
-sudo apt install build-essential # or equivalent to the package manager
-cd /usr/local
-git clone --depth=1 https://github.com/9fans/plan9port.git plan9
-sudo chown -R <user>:<user> plan9
-cd plan9
+git clone https://github.com/moledoc/plan9port.git "$HOME/plan9port"
+# linux - sudo chown -R <user>:<user> plan9port
+# mac - sudo chown -R <user>:<group> plan9port
+cd plan9port
 ./INSTALL
-# for rebuilding something, cd into the directory and `mk (-a) install`
 ```
 
-Add the following lines to your shell of choice
+Add these to `PATH`
+
+```text
+export PLAN9=/usr/local/plan9
+export PATH=$PATH:$PLAN9/bin
+```
+
+To rebuild a program in plan9port (using acme as an example):
 
 ```sh
-export PLAN9=/path/to/plan9
-export PATH=$PATH:$PLAN9/bin
+cd $PLAN9/src/cmd/acme
+mk install
+mk -a install # to force install all
+```
+
+Other essentially necessary programs:
+
+* LSP
+	* acme-lsp (GO111MODULE=on go install github.com/fhs/acme-lsp/cmd/acme-lsp@latest)
+	* L (GO111MODULE=on go install github.com/fhs/acme-lsp/cmd/L@latest)
+* Langs I've setup for LSP in the acme-lsp config:
+	* for go: gopls (GO111MODULE=on go install golang.org/x/tools/gopls@latest)
+	* for c/cpp: ccls (brew install ccls)
+	* for python: pylsp ($HOME/venv/bin/pip install "python-lsp-server[all]")
+
+
+Some less necessary, but nice to haves:
+
+* [9fans/acme/Watch](https://github.com/9fans/go.git 9fans)
+	* `cd ./9fans/acme/Watch; go install -buildvcs=false; cd-`
+* acmefocused - (not using currently, but will look into it soon) 
+
+Or to install all 9fans tools:
+
+```sh
+go install 9fans.net/go/...@latest 
 ```
 
 ### lsp
 
-To have lsp support, install `acme-lsp` and `L` from
-
-* `acme-lsp`
+Start `plumber`, then `acme` and lastly `acme-lsp`.
+To check that everything is in order,
 ```sh
-GO111MODULE=on go install github.com/fhs/acme-lsp/cmd/acme-lsp@v0.11.0)
-```
-* `L`
-```sh
-GO111MODULE=on go install github.com/fhs/acme-lsp/cmd/L@v0.11.0)
+ls `namespace`
+acme		acme-lsp.rpc	plumb
 ```
 
-I have an example of `acme-lsp` config file that can be found [here](../molecurrent/acme-lsp-config.toml) - that contains configuration for go with `gopls` and c/c++ with `ccls`.
+If any of them don't show up, then possible issues:
+* plubmer not running
+* acme not running
+* acme-lsp config incorrect
+* acme-lsp doesn't correctly map the proxy address (proxy address defines where the acme to lsp communication happens)
 
-To run lsp
+Useful:
 
 ```sh
-ACME_LSP_CONFIG=$HOME/.config/acme-lsp/config.toml acme-lsp -hidediag
+rm -rf `namespace` # to get clean slate
 ```
-
-Interfacing is done through `L` command, which has quite good help.
-I've seen people creating shell scripts for convenience, but I've stuck with the "non-convenient" approach.
 
 ## Fonts
 
@@ -88,7 +118,7 @@ It allows to make the plain text editor, that acme is, into very powerful editor
 plan9port comes with sane plumbing configuration.
 As such, I've had no need to dig into it too deeply, but sometime in the future I'd like to get more familiar with it.
 
-**NOTE:** During startup, start `plumber` in a background process.
+**NOTE:** During startup, start `plumber` in a background process. Or start when acme first started.
 
 ## Sam commands
 
@@ -171,12 +201,11 @@ As such, I've had no need to dig into it too deeply, but sometime in the future 
 	* `ctrl-j` enter
 	* `ctrl-u` delete from cursor to start of line
 	* `ctrl-w` delete word before the cursor
-	* macOS had copy/paste/cut/undo/redo, so I patched acme to enable them on linux (see [Patches section](#patches)); keybindings are as follow:
-		* `ctrl-b` - copy
-		* `ctrl-v` - paste
-		* `ctrl-x` - cut
-		* `ctrl-z` - undo
-		* `ctrl-y` - redo
+	* `ctrl-b` - copy
+	* `ctrl-v` - paste
+	* `ctrl-x` - cut
+	* `ctrl-z` - undo
+	* `ctrl-Z`(mac) `ctrl-y`(linux) - redo
 * misc:
 	* focus is on the windows where cursor is hovering
 	* window id: `echo $winid`
@@ -228,7 +257,7 @@ Here are some examples:
 
 ## Resources
 
-
+* [my fork of plan9port](https://github.com/moledoc/plan9port.git)
 * [plan9port](https://github.com/9fans/plan9port.git)
 * [tour of acme](https://research.swtch.com/acme)
 * [acme man page](https://9fans.github.io/plan9port/man/man1/acme.html)
@@ -241,48 +270,11 @@ Here are some examples:
 * [default fonts](https://plan9port.googlesource.com/plan9/+/fc638f7bd4d11352c44c8d4c6fc6d15e90f17ddb/font)
 * [some font stuff I found](https://9fans.topicbox.com/groups/9fans/Td0ab6c3112c95493-M4005dd63b8324e8b0133f10d)
 
-## Patches
-
-I've added some functionality for myself.
-The changes are not 100% ideal, but for the most part (and for current iteration) they are good enough.
-Changes include:
-* linux keyboard shortcuts
-* colorscheme change
-* where new window is opened (TODO)
-* keyword highlighting (WIP)
-* visible line numbers superimposed on the scrollbar (TODO: no todos marked)
-* shift-click highlights from cursor to click (TODO: no todos marked)
-* arrow up/down doesn't move page, move to line up/down (TODO)
-* shift arrow highlights text (TODO)
-
-MAYBE: TODO: move the `hl()` from libframe to /acme.
-
-Patch can be found [here](../molecurrent/acme.patch).
-
-Creating patch
-
-```sh
-cd $PLAN9
-rm acme.patch
-git ls-files --others --exclude-standard -z | while IFS= read -r -d '' f;
-do
-	git diff --no-index /dev/null "$f" 
-done > acme.patch
-git diff >> acme.patch
-```
-
-Apply patch
-```sh
-cd $PLAN9
-git apply --stat acme.patch # dry-run
-git apply acme.patch
-mk -a install
-```
-
 ## TODOs
 
-* update the doc once I'm finished with the patches
-* add other setup related updates
+* figure out how to start multiple acmes with lsps
+	* hint: can define acme and proxy address for lsp
+* learn plumber/plumbing
 
 ## Author
 

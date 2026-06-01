@@ -14,26 +14,32 @@ NOTE: when building from source, use `git clone --depth=1` for quicker cloning.
 * package manager (install or update); eg
 	* apt update && apt upgrade
 	* port ([macports](https://www.macports.org))
-	* brew ([homebrew](https://brew.sh)) (at time of writing, haven't used)
+	* brew ([homebrew](https://brew.sh))
 * git
 * devel packages
 	* some used in debian 12 setups: build-essential libx11-dev libxext-dev libxt-dev libfontconfig1-dev libxtst-dev libxinerama-dev libxft-dev libxrandr-dev
 	* macOS: `xcode-select --install` and `xcodebuild -license`
 * clang/gcc
 * wget
-* [plan9port](https://github.com/9fans/plan9port)
+* [plan9port](https://github.com/moledoc/plan9port)
 	* acme
 * [go](https://go.dev/dl/)
-	* acme-lsp (GO111MODULE=on go install github.com/fhs/acme-lsp/cmd/acme-lsp@v0.11.0)
-	* L (GO111MODULE=on go install github.com/fhs/acme-lsp/cmd/L@v0.11.0)
-	* gopls (GO111MODULE=on go install golang.org/x/tools/gopls@v0.16.1)
+	* acme-lsp (GO111MODULE=on go install github.com/fhs/acme-lsp/cmd/acme-lsp@latest)
+	* L (GO111MODULE=on go install github.com/fhs/acme-lsp/cmd/L@latest)
+	* gopls (GO111MODULE=on go install golang.org/x/tools/gopls@latest)
 * [9fans/acme/Watch](https://github.com/9fans/go.git 9fans)
 	* `cd ./9fans/acme/Watch; go install -buildvcs=false; cd-`
 * ccls
-* [pw](https://github.com/moledoc/pw/releases/tag/v0.5.1)
+* [pw](https://github.com/moledoc/pw/releases/tag/v0.7.1)
+	* pwcli
+	* pwgui
 * 9wm/9menu (linux build)
 	* [9wm](https://github.com/9wm/9wm.git)
 	* [9menu](https://github.com/arnoldrobbins/9menu.git)
+* python
+	* venv: `python3 -m venv $HOME/venv`
+	* enable/disable: `source $HOME/venv/bin/activate` / `deactivate`
+	* lsp setup: `$HOME/venv/bin/pip install "python-lsp-server[all]"`
 
 ### Debian 12 apt installs
 
@@ -61,11 +67,13 @@ git config --global user.email "<email>"
 
 ### plan9port
 
+I'm maintaining a fork of plan9port (mainly for acme), where I've added some 'modern developer' friendly features.
+
 ```sh
-git clone https://github.com/9fans/plan9port.git "/usr/local/plan9"
-# linux - sudo chown -R <user>:<user> plan9
-# mac - sudo chown -R <user>:<group> plan9
-cd plan9
+git clone https://github.com/moledoc/plan9port.git "$HOME/plan9port"
+# linux - sudo chown -R <user>:<user> plan9port
+# mac - sudo chown -R <user>:<group> plan9port
+cd plan9port
 ./INSTALL
 ```
 
@@ -76,11 +84,18 @@ export PLAN9=/usr/local/plan9
 export PATH=$PATH:$PLAN9/bin
 ```
 
-NOTE: for macOS there are nothing much to setup, but for linux I patch `acme/text.c` to get copy/paste/cut/undo/redo.
+To rebuild a program in plan9port (using acme as an example):
 
 ```sh
-cd ./plan9/src/cmd/acme; patch text.c acme_text.patch; cd -
+cd $PLAN9/src/cmd/acme
+mk install
+mk -a install # to force install all
 ```
+
+### python
+
+Setup user specific venv and install lsp.
+
 
 ### apt
 
@@ -127,7 +142,7 @@ bluetoothctl block <device address>
 ### macOS Spotlight
 
 Applications runnable using Spotlight live in `/Applications` and are essentially dirs with specific structure.
-For minimal (currently) working example, see [acme.app](./acme.app).
+For working examples, see [acme.app](./acme.app) or [vault.app](./vault.app).
 
 ### macPorts
 
