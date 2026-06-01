@@ -1,4 +1,7 @@
-# Configuration file location: /home/utt/.config/acme-lsp/config.toml
+# Configuration file location: $HOME/.config/acme-lsp/config.toml
+
+# gopls setup from: https://github.com/9fans/acme-lsp
+# ccls setup from: https://9lab.org/9port/acme-with-lsp/
 
 ProxyNetwork = "unix"
 ProxyAddress = "/tmp/ns.utt.:0/acme-lsp.rpc"
@@ -6,45 +9,81 @@ AcmeNetwork = "unix"
 AcmeAddress = "/tmp/ns.utt.:0/acme"
 RootDirectory = "/"
 HideDiagnostics = true
-FormatOnPut = true
+FormatOnPut = false
 RPCTrace = false
+CodeActionsOnPut = ["source.organizeImports"]
 
-
-WorkspaceDirectories = [
-]
+WorkspaceDirectories = []
 
 [Servers]
-	[Servers.gopls]
-	Command = ["gopls", "serve", "-rpc.trace"]
-	StderrFile = "gopls.stderr.log"
-	LogFile = "gopls.log"
 
-		# These settings gets passed to gopls
-		[Servers.gopls.Options]
-		hoverKind = "FullDocumentation"
+[Servers.gopls]
+Command = ["gopls", "serve", "-rpc.trace"]
+StderrFile = "gopls.stderr.log"
+LogFile = "gopls.log"
 
-	[Servers.ccls]
-# if ccls doesn't work, try to
-# * add -I -D etc to .ccls file as well as to clang.extraArgs
-# * add project path to WorkspaceDirectories
-# don't know why it's like that, my guess is it's something to do with compilation
-# as I didn't encounter this issue with non-pre-processor c files.
-	Command = [
-		# "ccls",
-		"ccls-clang-14",
-		"-v=2",
+# These settings gets passed to gopls
+[Servers.gopls.Options]
+hoverKind = "FullDocumentation"
 
-		# clang.extraArgs from 'clang -v -fsyntax-only -x c++ /dev/null'
-		# clang.resourceDir from 'clang -print-resource-dir'
-		"--init={\"cache\":{\"directory\":\"$HOME/.cache/ccls\"},\"highlight\":{\"enabled\":true},\"clang\": {\"extraArgs\": [\"-isystem\", \"/usr/lib/llvm-14/lib/clang/14.0.6/include\", \"-isystem\", \"/usr/local/include\", \"-isystem\", \"/usr/include/x86_64-linux-gnu\", \"-isystem\", \"/usr/include\"], \"resourceDir\": \"/usr/lib/llvm-14/lib/clang/14.0.6\"},\"completion\":{\"detailedLabel\":false}}"
-	]
-	StderrFile = "ccls.stderr.log"
-	LogFile = "ccls.log"
+# These settings gets passed to gopls on format.
+# Gopls ignores these, but other LSP servers recognize
+# them.
+[Servers.gopls.FormattingOptions]
+# Size of a tab in spaces.
+TabSize = 0
+# Prefer spaces over tabs.
+InsertSpaces = false
+# Trim trailing whitespace on a line.
+TrimTrailingWhitespace = true
+# Insert a newline character at the end of the file
+# if one does not exist.
+InsertFinalNewline = true
+# Trim all newlines after the final newline at the
+# end of the file.
+TrimFinalNewlines = true
+
+[Servers.ccls]
+Command = [
+  "ccls",
+  "-log-file=/Users/utt/Library/Logs/ccls.log",
+  "-v=4",
+  # clang.extraArgs from 'clang -v -fsyntax-only -x c++ /dev/null'
+  # clang.resourceDir from 'clang -print-resource-dir'
+  "--init={\"cache\":{\"directory\":\"/Users/utt/.cache/ccls\"},\"highlight\":{\"enabled\":true},\"clang\": {\"extraArgs\": [\"-DOSX\", \"-D_THREAD_SAFE\", \"-DPLAN9\", \"-D__plan9__\", \"-I/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1\",\"-I/Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include\",\"-I/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include\",\"-I/Library/Developer/CommandLineTools/usr/include\",\"-I/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks\", \"-I/Users/utt/plan9port/include\", \"-I/opt/homebrew/lib\", \"-lSDL2\", \"-lSDL2_ttf\"], \"resourceDir\": \"/Library/Developer/CommandLineTools/usr/lib/clang/15.0.0\"},\"completion\":{\"detailedLabel\":false}}",
+]
+StderrFile = "ccls.stderr.log"
+LogFile = "ccls.log"
+
+# to enable pylsp, add projects as editable for $HOME/venv (using $HOME/venv as central user python3 management):
+# $HOME/venv/bin/python -m pip install -e <path to project>
+[Servers.pylsp]
+Command = ["pylsp"]
+StderrFile = "pylsp.stderr.log"
+LogFile = "pylsp.log"
 
 [[FilenameHandlers]]
-Pattern = '([/\\]go\.mod)|([/\\]go\.sum)|(\.go)$'
+Pattern = "[/\\\\]go\\.mod$"
+LanguageID = "go.mod"
+ServerKey = "gopls"
+
+[[FilenameHandlers]]
+Pattern = "[/\\\\]go\\.sum$"
+LanguageID = "go.sum"
+ServerKey = "gopls"
+
+[[FilenameHandlers]]
+Pattern = "\\.go$"
+# Don't run this LSP in files in /projects/example (for instance because that
+# project needs a gopls with a Bazel packages driver).
+Ignore = "/projects/example"
+LanguageID = "go"
 ServerKey = "gopls"
 
 [[FilenameHandlers]]
 Pattern = '(\.h)|(\.c)|(\.cpp)|(\.cc)|(\.def)$'
 ServerKey = "ccls"
+
+[[FilenameHandlers]]
+Pattern = '(\.py)|(\.pyi)$'
+ServerKey = "pylsp"

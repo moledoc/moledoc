@@ -1,5 +1,8 @@
 export PLAN9=$HOME/plan9port
-export PATH=$HOME/go/bin:$HOME/venv/bin:/usr/local/bin:/opt/homebrew/bin:/usr/local/go/bin:$PLAN9/bin:$PATH
+export PATH=$HOME/go/bin:$HOME/venv/bin:/usr/local/bin:/opt/homebrew/bin:/usr/local/go/bin:$PATH:$PLAN9/bin
+
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
 
 alias acme="open -a acme.app"
 function git_branch_name() {

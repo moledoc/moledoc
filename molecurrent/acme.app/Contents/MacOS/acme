@@ -1,12 +1,19 @@
 #!/bin/bash
-SHELL=/bin/bash
-source $HOME/.bashrc
-PLAN9=${PLAN9:-/usr/local/plan9}
-if ! [[ :$PATH: =~ :$PLAN9/bin: ]]
-then
-	PATH=$PATH:$PLAN9/bin:/usr/local/go/bin:$HOME/go/bin:/opt/local/bin
-fi
-cd $HOME
-acme -f /mnt/font/Menlo-Regular/14a/font
-exit 0
+# assume acme with moledoc's changes
 
+SHELL=/bin/zsh
+source $HOME/.zshrc
+
+PLAN9=${PLAN9:-$HOME/plan9port}
+PATH=$HOME/go/bin:$HOME/venv/bin:/usr/local/bin:/opt/homebrew/bin:/usr/local/go/bin:$PATH:$PLAN9/bin
+
+# if ! [[ :$PATH: =~ :$PLAN9/bin: ]]
+# then
+# fi
+
+cd $HOME
+
+pgrep plumber >/dev/null || $PLAN9/bin/plumber
+$PLAN9/bin/acme -f /mnt/font/Menlo-Regular/14a/font -t gruvbox-dark &
+sleep 2 # allow acme to start before startin lsp
+pgrep acme-lsp >/dev/null || ACME_LSP_CONFIG=$HOME/.config/acme-lsp/config.toml acme-lsp &
