@@ -1,10 +1,7 @@
 export PLAN9=$HOME/plan9port
-export PATH=$PATH:/opt/homebrew/bin:/usr/local/go/bin:$HOME/go/bin:$PLAN9/bin
+export PATH=$HOME/go/bin:$HOME/venv/bin:/usr/local/bin:/opt/homebrew/bin:/usr/local/go/bin:$PLAN9/bin:$PATH
 
-alias acme="acme -f /mnt/font/Menlo-Regular/14a/font"
-# alias lsp="pgrep \"acme-lsp\" | parallel 'kill -9 {}';ACME_LSP_CONFIG=$HOME/.config/acme-lsp/config.toml acme-lsp -hidediag &"
-# alias kill-lsp="pgrep \"acme-lsp\" | parallel 'kill -9 {}'"
-
+alias acme="open -a acme.app"
 function git_branch_name() {
 	branch=$(git branch --show-current 2> /dev/null)
 	test -n "$branch" && echo "($branch) "
