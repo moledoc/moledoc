@@ -19,8 +19,8 @@ WorkspaceDirectories = []
 
 [Servers.gopls]
 Command = ["gopls", "serve", "-rpc.trace"]
-StderrFile = "gopls.stderr.log"
-LogFile = "gopls.log"
+StderrFile = "/Users/utt/Library/Logs/gopls.stderr.log"
+LogFile = "/Users/utt/Library/Logs/gopls.log"
 
 # These settings gets passed to gopls
 [Servers.gopls.Options]
@@ -46,21 +46,22 @@ TrimFinalNewlines = true
 [Servers.ccls]
 Command = [
   "ccls",
-  "-log-file=/Users/utt/Library/Logs/ccls.log",
+  "-log-file=/Users/utt/Library/Logs/ccls.log.log",
   "-v=4",
   # clang.extraArgs from 'clang -v -fsyntax-only -x c++ /dev/null'
   # clang.resourceDir from 'clang -print-resource-dir'
   "--init={\"cache\":{\"directory\":\"/Users/utt/.cache/ccls\"},\"highlight\":{\"enabled\":true},\"clang\": {\"extraArgs\": [\"-DOSX\", \"-D_THREAD_SAFE\", \"-DPLAN9\", \"-D__plan9__\", \"-I/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1\",\"-I/Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include\",\"-I/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include\",\"-I/Library/Developer/CommandLineTools/usr/include\",\"-I/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks\", \"-I/Users/utt/plan9port/include\", \"-I/opt/homebrew/lib\", \"-lSDL2\", \"-lSDL2_ttf\"], \"resourceDir\": \"/Library/Developer/CommandLineTools/usr/lib/clang/15.0.0\"},\"completion\":{\"detailedLabel\":false}}",
 ]
-StderrFile = "ccls.stderr.log"
-LogFile = "ccls.log"
+StderrFile = "/Users/utt/Library/Logs/ccls.stderr.log"
+LogFile = "/Users/utt/Library/Logs/ccls.log"
 
-# to enable pylsp, add projects as editable for $HOME/venv (using $HOME/venv as central user python3 management):
+# to enable pylsp, install projects either as is or as editable for $HOME/venv (using $HOME/venv as central user python3 management):
 # $HOME/venv/bin/python -m pip install -e <path to project>
+# $HOME/venv/bin/python -m pip install <path to project>
 [Servers.pylsp]
 Command = ["pylsp"]
-StderrFile = "pylsp.stderr.log"
-LogFile = "pylsp.log"
+StderrFile = "/Users/utt/Library/Logs/pylsp.stderr.log"
+LogFile = "/Users/utt/Library/Logs/pylsp.log"
 
 [[FilenameHandlers]]
 Pattern = "[/\\\\]go\\.mod$"
@@ -81,9 +82,15 @@ LanguageID = "go"
 ServerKey = "gopls"
 
 [[FilenameHandlers]]
-Pattern = '(\.h)|(\.c)|(\.cpp)|(\.cc)|(\.def)$'
+Pattern = "\\.(c|h)$"
+LanguageID = "c"
 ServerKey = "ccls"
 
 [[FilenameHandlers]]
-Pattern = '(\.py)|(\.pyi)$'
+Pattern = "\\.(cpp|cc|hpp|hh)$"
+LanguageID = "cpp"
+ServerKey = "ccls"
+
+[[FilenameHandlers]]
+Pattern = "\\.pyi?$"
 ServerKey = "pylsp"
